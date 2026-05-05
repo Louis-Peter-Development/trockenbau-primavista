@@ -1137,13 +1137,4 @@ export const calculatorChoices = [
     packageIds: packages.map((item) => item.id),
     isDarkButton: true,
   },
-  {
-    id: 'material',
-    title: 'Alternativ - Material mit Montage buchen!',
-    buttonLabel: 'Weiterleitung zu Material',
-    image: serviceSpecialImage,
-    alt: 'Material- und Montageauswahl für Trockenbau',
-    packageIds: ['sonstiges'],
-    isDarkButton: true,
-  },
 ];
