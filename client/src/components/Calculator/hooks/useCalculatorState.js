@@ -153,11 +153,16 @@ function useCalculatorState() {
     setIsComponentBreakdownMode(choice.id === 'alles');
 
     setSelectedAddOns((currentIds) => {
-      const nextChoiceAddOns = choice.addOnIds ?? [];
+      const choiceAddOnIds = new Set(choice.addOnIds ?? []);
+      const nextChoiceAddOns = (choice.addOnIds ?? []).filter((id) => {
+        const addOn = addOns.find((item) => item.id === id);
+
+        return addOn?.defaultSelected === true;
+      });
       const nonChoiceAddOns = currentIds.filter((id) => {
         const addOn = addOns.find((item) => item.id === id);
 
-        return !addOn?.appliesToChoices;
+        return !addOn?.appliesToChoices && !choiceAddOnIds.has(id);
       });
 
       return Array.from(new Set([...nonChoiceAddOns, ...nextChoiceAddOns]));
