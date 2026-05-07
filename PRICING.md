@@ -1,151 +1,166 @@
 # Trockenbau Prima Vista Pricing
 
-Source: `client/src/components/Calculator/data/calculatorCatalog.js`
+Source of truth: [`client/src/components/Calculator/data/calculatorCatalog.js`](client/src/components/Calculator/data/calculatorCatalog.js).
 
-Prices are calculator unit prices in **CHF**. VAT is calculated separately in the app at **8.1%**.
-
-## Notes
-
-- `Sonstiges` is no longer treated as a flat rate. Use **CHF 80.00 / h** as the hourly reference rate.
-- Spackling and insulation should offer premium tiers. The basic finish prices below are the minimum rates.
+All prices in **CHF**, exclusive of VAT. The calculator adds VAT at **8.1 %**.
+The **Default** column marks rows that start pre-selected when the customer first opens that calculator.
 
 ## Main Packages
 
 | Service | Price | Unit |
 | --- | ---: | --- |
-| Decken abhängen | CHF 70.00 | qm |
-| Wände stellen | CHF 65.00 | qm |
-| Estrich-Boden | CHF 40.00 | qm |
-| Dachschrägen | CHF 100.00 | qm |
-| Sonstiges | CHF 80.00 | h |
+| Decken abhängen | 70.00 | qm |
+| Wände stellen | 65.00 | qm |
+| Estrich-Boden | 40.00 | qm |
+| Dachschrägen | 100.00 | qm |
+| Sonstiges | 80.00 | h |
 
-## General Add-Ons
+> `Sonstiges` is billed at an hourly rate, not flat per project.
 
-| Add-on | Price | Unit |
-| --- | ---: | --- |
-| Decken abhängen | CHF 24.00 | m² |
-| Wände verkleiden | CHF 65.00 | qm |
-| Estrich-Boden | CHF 32.00 | m² |
-| Dachschrägen verkleiden | CHF 26.00 | m² |
-| Dämmung | CHF 35.00 | m² |
-| Türen einbauen | CHF 1,300.00 | Stk |
-| Elektroleitungen integrieren | CHF 30.00 | m² |
-| Brandschutz | CHF 17.00 | m² |
-| Spachtelarbeiten, basic finish | CHF 12.00 | m² |
-| Abbruch & Entsorgung | CHF 22.00 | m² |
+## Decken abhängen
 
-## Decken
+| Position | Default | Price | Unit |
+| --- | :---: | ---: | --- |
+| Verspachtlung streichfertig | ✓ | 18.00 | qm |
+| Eckausbildung für GK-Wände & -Decken | – | 67.00 | Stk. |
+| Rigips Gipsplatte | ✓ | 4.00 | qm |
+| Knauf GKBI imprägniert | ✓ | 7.00 | qm |
+| Parador Paneele Novara Esche Weiss | – | 24.00 | Stk. |
+| Parador Deckenleiste DAL 2 | – | 7.00 | Stk. |
+| Weitere Produkte Innenausbau | – | 0.00 | Stk. |
 
-| Position | Price | Unit |
-| --- | ---: | --- |
-| Verspachtlung streichfertig | CHF 22.82 | qm |
-| Eckausbildung für GK-Wände & -Decken | CHF 67.37 | Stk. |
-| Rigips Gipsplatte | CHF 3.49 | qm |
-| Knauf GKBI imprägniert | CHF 8.90 | qm |
-| Parador Paneele Novara Esche Weiss | CHF 24.31 | Stk. |
-| Parador Deckenleiste DAL 2 | CHF 6.74 | Stk. |
-| Weitere Produkte Innenausbau | CHF 0.00 | Stk. |
+## Wände stellen
 
-## Wände
+| Position | Default | Price | Unit |
+| --- | :---: | ---: | --- |
+| Verspachtlung streichfertig für Gipsplatten | ✓ | 18.00 | qm |
+| Türloch Herstellung für GK-Wände | ✓ | 85.00 | Stk. |
+| Eckausbildung für GK-Wände und Decken | – | 67.00 | Stk. |
+| Rigips Gipsplatte | ✓ | 4.00 | qm |
+| Knauf GKBI Sonderpalette imprägniert | ✓ | 7.00 | qm |
+| Rohrkästen & Koffer in Trockenbauweise | – | 275.00 | Stk. |
+| Durchgang verschließen in Trockenbauweise | – | 475.00 | Stk. |
+| ECLISSE Innenwand-Schiebetürset | – | 950.00 | Stk. |
+| JOKA PARO AKUSTIK Echtholzpaneel geprägt | – | 140.00 | qm |
+| ARDESIO Steinpaneel | – | 165.00 | qm |
 
-| Position | Price | Unit |
-| --- | ---: | --- |
-| Verspachtlung streichfertig für Gipsplatten | CHF 22.82 | qm |
-| Türloch Herstellung für GK-Wände | CHF 80.00 | Stk. |
-| Eckausbildung für GK-Wände und Decken | CHF 67.37 | Stk. |
-| Rigips Gipsplatte | CHF 3.49 | qm |
-| Knauf GKBI Sonderpalette imprägniert | CHF 8.90 | qm |
-| Rohrkästen & Koffer in Trockenbauweise | CHF 250.00 | Stk. |
-| Durchgang verschließen in Trockenbauweise | CHF 450.00 | Stk. |
-| ECLISSE Innenwand-Schiebetürset | CHF 927.65 | Stk. |
-| JOKA PARO AKUSTIK Echtholzpaneel geprägt | CHF 132.28 | qm |
-| ARDESIO Steinpaneel | CHF 153.91 | qm |
-| De Ryck Steinriemchen Murok Sierra M47 | CHF 90.42 | Stk |
-| Botament M21 HP Premium-Flexkleber - 25Kg | CHF 47.96 | Stk |
-| Vorsatzwände Montage-Leistungspaket | CHF 65.00 | qm |
+## Wände verkleiden
 
-## Estrich
+| Position | Default | Price | Unit |
+| --- | :---: | ---: | --- |
+| ARDESIO Steinpaneel | ✓ | 165.00 | qm |
+| Botament M21 HP Premium-Flexkleber – 25 kg | ✓ | 45.00 | Stk. |
+| JOKA PARO AKUSTIK Echtholzpaneel geprägt | – | 140.00 | qm |
+| De Ryck Steinriemchen Murok Sierra M47 | – | 95.00 | Stk. |
+| Vorsatzwände Montage-Leistungspaket | – | 65.00 | qm |
+| Rigips Gipsplatte | – | 4.00 | qm |
+| Knauf GKBI Sonderpalette imprägniert | – | 7.00 | qm |
 
-| Position | Price | Unit |
-| --- | ---: | --- |
-| ALT-ESTRICH Demontage & Entsorgung | CHF 55.00 | qm |
-| Fermacell Estrich-Elemente mit Mineralwolldämmung | CHF 26.39 | Stk. |
-| Fermacell Estrich-Kleber - 1 kg Flasche | CHF 25.19 | Stk |
-| Fermacell Schnellbauschrauben für Estrichelemente | CHF 21.89 | Stk |
-| Ausgleichsschüttung herstellen bis 3 cm | CHF 11.68 | qm |
-| Fermacell Wabenschüttung - 15 Liter Sack | CHF 9.24 | Stk |
-| Fermacell Wärmedämmschüttung - 100 Liter Sack | CHF 25.85 | Stk |
-| Fermacell Estrich-Wabe 1.500x1.000 mm, Dicke 30 mm | CHF 15.84 | Stk |
+## Estrich verlegen
 
-## Dachschrägen
+| Position | Default | Price | Unit |
+| --- | :---: | ---: | --- |
+| ALT-ESTRICH Demontage & Entsorgung | – | 55.00 | qm |
+| Fermacell Estrich-Elemente mit Mineralwolldämmung | ✓ | 40.00 | Stk. |
+| Fermacell Estrich-Kleber – 1 kg Flasche | ✓ | 20.00 | Stk. |
+| Fermacell Schnellbauschrauben für Estrichelemente | ✓ | 21.00 | Stk. |
+| Ausgleichsschüttung herstellen bis 3 cm | – | 15.00 | qm |
+| Fermacell Wabenschüttung – 15 Liter Sack | – | 9.50 | Stk. |
+| Fermacell Wärmedämmschüttung – 100 Liter Sack | – | 27.00 | Stk. |
+| Fermacell Estrich-Wabe 1.500 × 1.000 mm, Dicke 30 mm | – | 16.00 | Stk. |
 
-| Position | Price | Unit |
-| --- | ---: | --- |
-| Verspachtlung streichfertig | CHF 24.90 | qm |
-| Dämmung Montage-Leistung | CHF 35.00 | qm |
-| Alt-Dämmung Demontage & Entsorgung | CHF 13.40 | qm |
-| URSA SF 32 PLUS Klemmfilz 140 mm | CHF 25.70 | qm |
-| Knauf LDS Flex Plus Dampfbremsbahn | CHF 7.59 | qm |
-| Rigips Gipsplatte | CHF 3.49 | qm |
-| Knauf GKBI imprägniert | CHF 8.90 | qm |
-| Dachfenster Montage-Paket | CHF 2,000.00 | Stk. |
-| Velux Solarfenster GGU Kunststoff | CHF 1,500.00 | Stk. |
-| Velux Rollo Verdunkelung manuell | CHF 83.72 | Stk. |
-| Revisionsklappe Knauf REVO BS90 | CHF 134.15 | Stk. |
-| Parador Paneele Esche Weiss Dekor | CHF 24.31 | Stk. |
-| Weitere Innenausbau-Optionen auf Anfrage | CHF 0.00 | Stk |
+## Dachschrägen verkleiden
 
-## Catalog Reference Positions
+| Position | Default | Price | Unit |
+| --- | :---: | ---: | --- |
+| Verspachtlung streichfertig | ✓ | 20.00 | qm |
+| Dämmung Montage-Leistung | – | 35.00 | qm |
+| Alt-Dämmung Demontage & Entsorgung | ✓ | 15.00 | qm |
+| URSA SF 32 PLUS Klemmfilz 140 mm | ✓ | 22.00 | qm |
+| Knauf LDS Flex Plus Dampfbremsbahn | ✓ | 5.50 | qm |
+| Rigips Gipsplatte | ✓ | 4.00 | qm |
+| Knauf GKBI imprägniert | ✓ | 7.00 | qm |
+| Rockwool Masterrock 035 Aufsparrendämmung | – | 60.00 | Pak. |
+| Rigidur Dachbodenelement 032 TF 85 1500 × 500 × 85 mm | – | 42.00 | qm |
+| Dachfenster Montage-Paket | – | 2,200.00 | Stk. |
+| Velux Solarfenster GGU Kunststoff | – | 1,600.00 | Stk. |
+| Velux Rollo Verdunkelung manuell | – | 90.00 | Stk. |
+| Revisionsklappe Knauf REVO BS90 | – | 134.00 | Stk. |
+| Parador Paneele Esche Weiss Dekor | – | 24.00 | Stk. |
+| Parador Deckenleiste DAL 2 Esche Weiss | – | 7.00 | Stk. |
+| Weitere Produkte Innenausbau | – | 0.00 | Stk. |
 
-These positions are marked as `catalogOnly` in the calculator data. They appear as reference or breakdown positions rather than normal selected quote lines.
+## Sonstiges (Anfrage / hourly)
+
+These add-ons appear when the customer chooses *Sonstiges* and are intended as scope flags rather than priced line items in the auto-quote.
+
+| Position | Default | Price | Unit |
+| --- | :---: | ---: | --- |
+| Dämmung | – | 35.00 | m² |
+| Türen einbauen | – | 1,300.00 | Stk. |
+| Elektroleitungen integrieren | – | 30.00 | m² |
+| Brandschutz | – | 20.00 | m² |
+| Spachtelarbeiten (Basic Finish) | ✓ | 14.00 | m² |
+| Abbruch & Entsorgung | – | 24.00 | m² |
+
+## Catalog Reference (component breakdown)
+
+These rows back the *Alles zu Trockenbau* / Profi view, where the calculator splits a package into its underlying catalog components. They are read-only references rather than line items the customer toggles.
 
 ### Trockenbau: Decken & Wände
 
 | Position | Price | Unit |
 | --- | ---: | --- |
-| DECKEN \| Montage-Leistungspaket | CHF 70.00 | qm |
-| WÄNDE \| Montage-Leistungspaket | CHF 65.00 | qm |
-| VORSATZWÄNDE \| Montage-Leistungspaket | CHF 65.00 | qm |
-| VERSPACHTLUNG \| streichfertig | CHF 22.82 | qm |
-| TÜRLOCH \| Herstellung | CHF 80.00 | Stück |
-| ECKAUSBILDUNG | CHF 67.37 | Stück |
-| ROHRKÄSTEN & KOFFER | CHF 250.00 | Stück |
-| DURCHGANG VERSCHLIESSEN | CHF 450.00 | Stück |
+| DECKEN \| Montage-Leistungspaket | 70.00 | qm |
+| WÄNDE \| Montage-Leistungspaket | 65.00 | qm |
+| VORSATZWÄNDE \| Montage-Leistungspaket | 65.00 | qm |
+| VERSPACHTLUNG \| streichfertig | 18.00 | qm |
+| TÜRLOCH \| Herstellung | 85.00 | Stück |
+| ECKAUSBILDUNG | 67.00 | Stück |
+| ROHRKÄSTEN & KOFFER | 275.00 | Stück |
+| DURCHGANG VERSCHLIESSEN | 475.00 | Stück |
 
 ### Estrich-Arbeiten
 
 | Position | Price | Unit |
 | --- | ---: | --- |
-| ESTRICH \| Montage | CHF 40.00 | qm |
-| ALT-ESTRICH \| Demontage & Entsorgung | CHF 55.00 | qm |
-| Fermacell Estrich-Elemente \| 30 mm | CHF 26.39 | Stk. |
-| Ausgleichsschüttung \| herstellen | CHF 11.68 | qm |
-| Fermacell Wabenschüttung \| 15 L | CHF 9.24 | Sack |
+| ESTRICH \| Montage | 40.00 | qm |
+| ALT-ESTRICH \| Demontage & Entsorgung | 55.00 | qm |
+| Fermacell Estrich-Elemente \| 30 mm | 40.00 | Stk. |
+| Ausgleichsschüttung \| herstellen | 15.00 | qm |
+| Fermacell Wabenschüttung \| 15 L | 9.50 | Sack |
 
 ### Dachausbau & Dämmung
 
 | Position | Price | Unit |
 | --- | ---: | --- |
-| DACHAUSBAU \| Montage-Leistungspaket | CHF 100.00 | qm |
-| DÄMMUNG \| Montage | CHF 35.00 | qm |
-| ALT-DÄMMUNG \| Demontage & Entsorgung | CHF 13.40 | qm |
-| URSA SF 32 PLUS \| Klemmfilz (140 mm) | CHF 25.70 | qm |
-| Knauf Dampfbremsbahn \| LDS Flex Plus | CHF 7.59 | qm |
+| DACHAUSBAU \| Montage-Leistungspaket | 100.00 | qm |
+| DÄMMUNG \| Montage | 35.00 | qm |
+| ALT-DÄMMUNG \| Demontage & Entsorgung | 15.00 | qm |
+| URSA SF 32 PLUS \| Klemmfilz (140 mm) | 22.00 | qm |
+| Knauf Dampfbremsbahn \| LDS Flex Plus | 5.50 | qm |
 
 ### Dachfenster & Sonderkomponenten
 
 | Position | Price | Unit |
 | --- | ---: | --- |
-| DACHFENSTER \| Montage-Paket | CHF 2,000.00 | Stück |
-| Velux Solarfenster \| GGU Kunststoff | CHF 1,500.00 | Stk. |
-| ECLISSE Schiebetürset \| inkl. Türblatt | CHF 927.65 | Stk. |
-| Knauf REVO Revisionsklappe | CHF 134.15 | Stk. |
+| DACHFENSTER \| Montage-Paket | 2,200.00 | Stück |
+| Velux Solarfenster \| GGU Kunststoff | 1,600.00 | Stk. |
+| ECLISSE Schiebetürset \| inkl. Türblatt | 950.00 | Stk. |
+| Knauf REVO Revisionsklappe | 134.00 | Stk. |
 
 ### Design & Akustik
 
 | Position | Price | Unit |
 | --- | ---: | --- |
-| JOKA Akustikpaneel \| Echtholz | CHF 132.28 | qm |
-| ARDESIO Steinpaneel | CHF 153.91 | qm |
-| De Ryck Steinriemchen \| Murok Sierra | CHF 90.42 | - |
-| Parador Paneele Novara \| Esche Weiss | CHF 24.31 | - |
+| JOKA Akustikpaneel \| Echtholz | 140.00 | qm |
+| ARDESIO Steinpaneel | 165.00 | qm |
+| De Ryck Steinriemchen \| Murok Sierra | 95.00 | – |
+| Parador Paneele Novara \| Esche Weiss | 24.00 | – |
+
+## Strategic Notes
+
+- Prices are positioned premium but competitive for the Swiss market.
+- VAT remains at 8.1 %.
+- `Sonstiges` is hourly-based, not flat-rate.
+- Premium upsell ideas: dedicated *Premium* / *Luxury* tiers, surcharges for acoustic and fire-rated systems, surcharges for difficult roof work.
