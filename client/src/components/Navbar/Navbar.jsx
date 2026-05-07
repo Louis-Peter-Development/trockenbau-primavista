@@ -12,7 +12,7 @@ const navItems = [
   {
     id: 'kalkulator',
     label: 'Kalkulator',
-    pagePath: '/kalkulator#kalkulator',
+    pagePath: '/kalkulator',
     sectionId: 'kostenrechner',
   },
   { id: 'ueber-uns', label: 'Über uns' },
