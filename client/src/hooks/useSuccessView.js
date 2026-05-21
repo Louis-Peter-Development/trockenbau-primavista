@@ -15,7 +15,7 @@ function useSuccessView(isActive) {
       node.focus({ preventScroll: true });
       node.scrollIntoView({
         behavior,
-        block: 'start',
+        block: 'center',
         inline: 'nearest',
       });
     };
