@@ -70,6 +70,7 @@ export const getCalculatorSelection = ({
   addOns,
   serviceComponents,
   selectedChoiceId,
+  selectedChoiceIds = [selectedChoiceId],
   selectedPackageIds,
   selectedAddOns,
   isComponentBreakdownMode,
@@ -78,8 +79,17 @@ export const getCalculatorSelection = ({
   customServiceComponentPrices,
 }) => {
   const selectedPackages = packages.filter((item) => selectedPackageIds.includes(item.id));
-  const activePackages = selectedPackages.length > 0 ? selectedPackages : [packages[0]];
+  const isCombinedChoice = selectedChoiceId === 'alles';
+  const combinedPackageIds = ['decken', 'waende', 'estrich-boden', 'dachschraegen'];
+  const combinedPackages = packages.filter((item) => combinedPackageIds.includes(item.id));
+  const activePackages = isCombinedChoice
+    ? combinedPackages
+    : selectedPackages.length > 0
+      ? selectedPackages
+      : [packages[0]];
+  const pricedPackages = isCombinedChoice ? selectedPackages : activePackages;
   const activePackageIds = activePackages.map((item) => item.id);
+  const effectiveChoiceIds = new Set(selectedChoiceIds);
   const activePackageUnitLabel = getPackageUnitLabel(activePackages);
   const activePackageTitles = activePackages.map((item) => item.title);
   const activePackageTitle = selectedChoiceId === 'alles'
@@ -87,7 +97,9 @@ export const getCalculatorSelection = ({
     : activePackageTitles.join(', ');
   const packageAddOns = addOns.filter((addOn) => (
     addOn.appliesTo.some((packageId) => activePackageIds.includes(packageId))
-    && (!addOn.appliesToChoices || addOn.appliesToChoices.includes(selectedChoiceId))
+    && (!addOn.appliesToChoices || addOn.appliesToChoices.some((choiceId) => (
+      effectiveChoiceIds.has(choiceId)
+    )))
   ));
   const visibleAddOns = isComponentBreakdownMode ? [] : packageAddOns;
   const activeServiceComponentEntries = activePackages.flatMap((packageItem) => (
@@ -98,7 +110,7 @@ export const getCalculatorSelection = ({
     }))
   ));
   const areaSquareMeters = parsePositiveNumber(areaInput);
-  const selectedPackagesUnitPrice = activePackages.reduce(
+  const selectedPackagesUnitPrice = pricedPackages.reduce(
     (sum, packageItem) => (
       sum + parsePositiveNumber(customPackagePrices[packageItem.id], packageItem.unitPrice)
     ),
@@ -125,6 +137,7 @@ export const getCalculatorSelection = ({
     activeServiceComponentEntries,
     areaSquareMeters,
     displayedPackageUnitPrice,
+    pricedPackages,
     selectedAddOnItems,
     visibleAddOns,
   };

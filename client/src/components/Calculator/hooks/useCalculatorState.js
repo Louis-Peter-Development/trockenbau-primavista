@@ -40,6 +40,7 @@ function useCalculatorState() {
       addOns,
       serviceComponents,
       selectedChoiceId: selectedChoice.id,
+      selectedChoiceIds: selectedChoice.combinesChoiceIds ?? [selectedChoice.id],
       selectedPackageIds,
       selectedAddOns,
       isComponentBreakdownMode,
@@ -53,13 +54,14 @@ function useCalculatorState() {
     customServiceComponentPrices,
     isComponentBreakdownMode,
     selectedAddOns,
+    selectedChoice.combinesChoiceIds,
     selectedChoice.id,
     selectedPackageIds,
   ]);
 
   const totals = useMemo(() => (
     getCalculatorTotals({
-      activePackages: selection.activePackages,
+      activePackages: selection.pricedPackages,
       activeServiceComponentEntries: selection.activeServiceComponentEntries,
       areaSquareMeters: selection.areaSquareMeters,
       selectedAddOnItems: selection.selectedAddOnItems,
@@ -76,9 +78,9 @@ function useCalculatorState() {
     customPackagePrices,
     customServiceComponentPrices,
     isComponentBreakdownMode,
-    selection.activePackages,
     selection.activeServiceComponentEntries,
     selection.areaSquareMeters,
+    selection.pricedPackages,
     selection.selectedAddOnItems,
   ]);
 
@@ -105,10 +107,10 @@ function useCalculatorState() {
     ));
   };
 
-  const togglePackage = (id) => {
+  const togglePackage = (id, { allowEmpty = false } = {}) => {
     setSelectedPackageIds((currentIds) => {
       if (currentIds.includes(id)) {
-        return currentIds.length > 1
+        return currentIds.length > 1 || allowEmpty
           ? currentIds.filter((currentId) => currentId !== id)
           : currentIds;
       }
@@ -148,11 +150,17 @@ function useCalculatorState() {
   };
 
   const selectChoice = (choice) => {
+    const isCombinedChoice = choice.id === 'alles';
+
     setSelectedChoice(choice);
-    setSelectedPackageIds(choice.packageIds);
-    setIsComponentBreakdownMode(choice.id === 'alles');
+    setSelectedPackageIds(isCombinedChoice ? [] : choice.packageIds);
+    setIsComponentBreakdownMode(false);
 
     setSelectedAddOns((currentIds) => {
+      if (isCombinedChoice) {
+        return [];
+      }
+
       const choiceAddOnIds = new Set(choice.addOnIds ?? []);
       const nextChoiceAddOns = (choice.addOnIds ?? []).filter((id) => {
         const addOn = addOns.find((item) => item.id === id);
@@ -174,7 +182,9 @@ function useCalculatorState() {
   };
 
   const switchMode = (nextMode) => {
-    setIsComponentBreakdownMode(nextMode === 'components');
+    setIsComponentBreakdownMode(
+      selectedChoice.id !== 'alles' && nextMode === 'components',
+    );
   };
 
   const getServiceComponentUnitPrice = (packageId) => (
