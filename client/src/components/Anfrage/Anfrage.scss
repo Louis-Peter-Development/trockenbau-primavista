@@ -483,3 +483,249 @@
   border-top: 1px solid var(--color-border-muted);
   margin-top: auto;
 }
+
+.anfrage__reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.anfrage--visible .anfrage__reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anfrage--visible .anfrage__step {
+  transition-delay: 0.12s;
+}
+
+.anfrage--visible .anfrage__footer {
+  transition-delay: 0.22s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anfrage__reveal,
+  .anfrage--visible .anfrage__reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Prima Vista Bauprojekte route alignment */
+
+.anfrage {
+  background:
+    radial-gradient(circle at top left, rgba(200, 154, 106, 0.08), transparent 34%),
+    var(--pv-ink-1);
+  color: var(--pv-bone);
+}
+
+.anfrage__progress {
+  height: 3px;
+  background: var(--pv-ink-4);
+}
+
+.anfrage__progress-bar {
+  background: var(--pv-copper-bright);
+}
+
+.anfrage__container {
+  max-width: 980px;
+  padding-top: clamp(54px, 7svh, 92px);
+}
+
+.anfrage__breadcrumb,
+.anfrage__eyebrow,
+.anfrage__card-title,
+.anfrage__back,
+.anfrage__next,
+.anfrage__submit,
+.anfrage__success-back,
+.anfrage__field {
+  font-family: var(--font-display);
+}
+
+.anfrage__breadcrumb {
+  gap: 10px;
+  margin-bottom: 48px;
+  color: var(--pv-text-on-dark-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.anfrage__breadcrumb a {
+  color: var(--pv-bone);
+}
+
+.anfrage__breadcrumb span,
+.anfrage__breadcrumb a:hover,
+.anfrage__eyebrow {
+  color: var(--pv-copper-bright);
+}
+
+.anfrage__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+}
+
+.anfrage__eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 3px;
+  background: var(--pv-red);
+}
+
+.anfrage__title,
+.anfrage__success-title {
+  color: var(--pv-bone);
+  font-family: var(--font-serif);
+  font-size: clamp(46px, 5.8vw, 88px);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  line-height: 0.98;
+}
+
+.anfrage__subtitle,
+.anfrage__card-text,
+.anfrage__success-text,
+.anfrage__footer {
+  color: var(--pv-text-on-dark-muted);
+}
+
+.anfrage__cards {
+  gap: 16px;
+}
+
+.anfrage__card {
+  min-height: 154px;
+  padding: 28px 22px;
+  border: 1px solid rgba(236, 229, 223, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--pv-bone);
+  box-shadow: none;
+}
+
+.anfrage__card:hover {
+  border-color: rgba(200, 154, 106, 0.56);
+  background: rgba(200, 154, 106, 0.06);
+  box-shadow: var(--color-shadow-sm);
+}
+
+.anfrage__card.is-selected {
+  border-color: var(--pv-copper-bright);
+  background: rgba(200, 154, 106, 0.12);
+  box-shadow: 0 0 0 1px rgba(200, 154, 106, 0.32);
+}
+
+.anfrage__card-icon,
+.anfrage__field-required {
+  color: var(--pv-copper-bright);
+}
+
+.anfrage__card-title {
+  color: var(--pv-bone);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.anfrage__card-check {
+  background: var(--pv-copper-bright);
+  color: var(--pv-ink-1);
+}
+
+.anfrage__summary,
+.anfrage__success-summary {
+  border-color: rgba(200, 154, 106, 0.32);
+  border-radius: 8px;
+  background: rgba(200, 154, 106, 0.08);
+  color: var(--pv-text-on-dark-muted);
+}
+
+.anfrage__summary strong {
+  color: var(--pv-bone);
+}
+
+.anfrage__back,
+.anfrage__next,
+.anfrage__submit,
+.anfrage__success-back {
+  border-radius: 2px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.anfrage__back {
+  border-color: rgba(236, 229, 223, 0.32);
+  color: var(--pv-bone);
+  background: transparent;
+}
+
+.anfrage__back:hover {
+  border-color: var(--pv-copper-bright);
+  color: var(--pv-copper-bright);
+}
+
+.anfrage__next,
+.anfrage__submit,
+.anfrage__success-back {
+  border: 1.5px solid var(--pv-copper-bright);
+  background: var(--pv-copper-bright);
+  color: var(--pv-ink-1);
+}
+
+.anfrage__field {
+  color: var(--pv-bone);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.anfrage__field input,
+.anfrage__field textarea {
+  border-radius: 4px;
+  border-color: rgba(236, 229, 223, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--pv-bone);
+}
+
+.anfrage__field input:focus,
+.anfrage__field textarea:focus {
+  border-color: var(--pv-copper-bright);
+  box-shadow: 0 0 0 4px rgba(200, 154, 106, 0.14);
+}
+
+.anfrage__success-icon {
+  background: rgba(200, 154, 106, 0.12);
+  color: var(--pv-copper-bright);
+}
+
+@media (max-width: 576px) {
+  .anfrage__container {
+    padding-top: 44px;
+  }
+
+  .anfrage__title,
+  .anfrage__success-title {
+    font-size: clamp(38px, 12vw, 58px);
+  }
+
+  .anfrage__cards--service,
+  .anfrage__cards--addons,
+  .anfrage__cards--size,
+  .anfrage__cards--timeline {
+    grid-template-columns: 1fr;
+  }
+}

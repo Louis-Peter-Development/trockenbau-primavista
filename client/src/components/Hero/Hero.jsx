@@ -113,7 +113,26 @@ function Hero() {
       ref={heroRef}
       className={`hero${isVisible ? ' hero--visible' : ''}`}
     >
+      <div className="hero__bg-slideshow" aria-hidden="true">
+        <ResponsivePicture
+          key={`${mainSlide.alt}-bg`}
+          image={mainSlide.image}
+          sizes={responsiveImageSizes.heroMain}
+          alt=""
+          loading="eager"
+          decoding="sync"
+          fetchPriority="high"
+          className="hero__bg-image"
+        />
+        <span className="hero__bg-overlay" />
+      </div>
       <div className="container hero__container">
+        <div className="hero__topline hero__reveal" aria-hidden="true">
+          <span><span className="dot" />Prima Vista</span>
+          <span>Innenausbau</span>
+          <span>Trockenbau</span>
+        </div>
+
         <div className="hero__content">
           <span className="hero__eyebrow hero__reveal">TROCKENBAU FÜR DECKEN & WÄNDE</span>
 
