@@ -22,6 +22,7 @@ function ConfiguratorSection({
     isComponentBreakdownMode,
     selectedChoice,
     selectedAddOns,
+    selectedPackageIds,
     areaInput,
   } = state;
   const {
@@ -34,7 +35,7 @@ function ConfiguratorSection({
     selectedAddOnItems,
     visibleAddOns,
   } = selection;
-  const isCatalogMode = selectedChoice.id === 'alles';
+  const isCombinedChoice = selectedChoice.id === 'alles';
   const componentGroups = activeServiceComponentEntries.reduce((groups, item) => {
     const groupTitle = item.catalogGroup ?? item.packageTitle;
 
@@ -68,10 +69,10 @@ function ConfiguratorSection({
             <div className="calculator-config__main">
               <div className="calculator-config__header calculator-config__reveal">
                 <span className="calculator-config__eyebrow">Angebotsdetails</span>
-                <h2>{isCatalogMode ? 'Einzelpreise und Varianten' : 'Fläche und Zusatzleistungen'}</h2>
+                <h2>Fläche und Zusatzleistungen</h2>
                 <p>
-                  {isCatalogMode
-                    ? 'Diese Übersicht listet die Standard-Leistungspakete und Materialoptionen. Die Gesamtsumme bleibt bei 0,00, weil die Positionen als Einzelpreis-Katalog geführt werden.'
+                  {isCombinedChoice
+                    ? 'Wählen Sie die benötigten Trockenbau-Komponenten aus allen Kalkulatoren. Standardmäßig ist nichts ausgewählt, damit die Kostenschätzung bei 0,00 startet.'
                     : 'Passen Sie die Fläche an und wählen Sie gewünschte Zusatzleistungen. Die finale Offerte folgt nach Prüfung von Untergrund, Materialwahl und Ausführungsdetails.'}
                 </p>
               </div>
@@ -109,7 +110,7 @@ function ConfiguratorSection({
 
             {isComponentBreakdownMode ? (
               <fieldset className="calculator-config__group calculator-config__group--positions calculator-config__reveal">
-                <legend>{isCatalogMode ? 'Varianten-Katalog' : 'Leistungspositionen'}</legend>
+                <legend>Leistungspositionen</legend>
                 <div className="calculator-config__components">
                   {Object.entries(componentGroups).map(([groupTitle, items]) => (
                     <div className="calculator-config__component-group" key={groupTitle}>
@@ -147,6 +148,8 @@ function ConfiguratorSection({
                 customPackagePrices={customPackagePrices}
                 selectedChoiceId={selectedChoice.id}
                 selectedAddOns={selectedAddOns}
+                selectedPackageIds={selectedPackageIds}
+                allowPackageSelection={isCombinedChoice}
                 visibleAddOns={visibleAddOns}
               />
             )}
@@ -159,7 +162,7 @@ function ConfiguratorSection({
           areaSquareMeters={areaSquareMeters}
           displayedPackageUnitPrice={displayedPackageUnitPrice}
           isComponentBreakdownMode={isComponentBreakdownMode}
-          positionLines={isCatalogMode ? [] : summary.positionLines}
+          positionLines={summary.positionLines}
           selectedAddOnCount={selectedAddOnItems.length}
           totals={totals}
         />

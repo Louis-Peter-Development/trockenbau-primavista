@@ -255,6 +255,31 @@ const fallbackPositionTitles = {
   sonstiges: 'ALLES zu Trockenbau',
 };
 
+const combinedChoiceByPackage = {
+  decken: 'decken',
+  waende: 'waende',
+  'estrich-boden': 'estrich',
+  dachschraegen: 'dachschraegen',
+};
+
+const getCombinedDisplayKey = ({ item, type }) => {
+  if (type === 'package') {
+    return combinedChoiceByPackage[item.id] ?? item.id;
+  }
+
+  const matchingChoiceId = item.appliesToChoices?.find((choiceId) => (
+    positionDisplayByPackage[choiceId]?.[`addon:${item.id}`]
+  ));
+
+  if (matchingChoiceId) {
+    return matchingChoiceId;
+  }
+
+  return item.appliesTo
+    .map((packageId) => combinedChoiceByPackage[packageId] ?? packageId)
+    .find((packageId) => positionDisplayByPackage[packageId]);
+};
+
 const getDisplayConfig = ({ activePackageKey, item, type }) => {
   const key = `${type}:${item.id}`;
   const packageDisplay = positionDisplayByPackage[activePackageKey];
@@ -428,6 +453,7 @@ function PositionRow({
 
 function PositionSelectionTable({
   actions,
+  allowPackageSelection = false,
   activePackages,
   areaInput,
   areaSquareMeters,
@@ -436,31 +462,42 @@ function PositionSelectionTable({
   customPackagePrices,
   selectedChoiceId,
   selectedAddOns,
+  selectedPackageIds = [],
   visibleAddOns,
 }) {
   const activePackageKey = activePackages.length === 1 ? activePackages[0].id : null;
   const activeDisplayKey = positionDisplayByPackage[selectedChoiceId]
     ? selectedChoiceId
     : activePackageKey;
+  const getRowDisplayKey = (item, type) => (
+    selectedChoiceId === 'alles'
+      ? getCombinedDisplayKey({ item, type })
+      : activeDisplayKey
+  );
   const packageRows = activePackages.map((item) => {
+    const isSelected = allowPackageSelection ? selectedPackageIds.includes(item.id) : true;
     const unitPrice = parsePositiveNumber(customPackagePrices[item.id], item.unitPrice);
-    const display = getDisplayConfig({ activePackageKey: activeDisplayKey, item, type: 'package' });
+    const display = getDisplayConfig({
+      activePackageKey: getRowDisplayKey(item, 'package'),
+      item,
+      type: 'package',
+    });
 
     return {
       group: display.group,
       node: (
         <PositionRow
           icon={<Wrench size={20} strokeWidth={2.2} />}
-          isLocked
-          isSelected
+          isLocked={!allowPackageSelection}
+          isSelected={isSelected}
           key={item.id}
           onPriceChange={(value) => actions.updatePackagePrice(item.id, value)}
           onQuantityChange={actions.setAreaInput}
           onResetQuantity={() => actions.setAreaInput(String(areaSquareMeters))}
-          onToggle={() => {}}
+          onToggle={() => actions.togglePackage(item.id, { allowEmpty: allowPackageSelection })}
           priceValue={customPackagePrices[item.id]}
           quantity={areaInput}
-          rowTotal={areaSquareMeters * unitPrice}
+          rowTotal={isSelected ? areaSquareMeters * unitPrice : 0}
           title={display.title}
           unit={item.unit ?? 'm²'}
         />
@@ -475,7 +512,11 @@ function PositionSelectionTable({
       areaSquareMeters,
       customQuantities: customAddOnQuantities,
     });
-    const display = getDisplayConfig({ activePackageKey: activeDisplayKey, item, type: 'addon' });
+    const display = getDisplayConfig({
+      activePackageKey: getRowDisplayKey(item, 'addon'),
+      item,
+      type: 'addon',
+    });
 
     return {
       group: display.group,
@@ -493,7 +534,7 @@ function PositionSelectionTable({
           onToggle={() => actions.toggleAddOn(item.id)}
           priceValue={customAddOnPrices[item.id]}
           quantity={customAddOnQuantities[item.id] ?? String(getLineQuantity(item, areaSquareMeters))}
-          rowTotal={quantity * unitPrice}
+          rowTotal={isSelected ? quantity * unitPrice : 0}
           title={display.title}
           unit={getPriceUnitLabel(item)}
         />
@@ -501,7 +542,20 @@ function PositionSelectionTable({
     };
   });
   const allRows = [...packageRows, ...addOnRows];
-  const groupTitles = activeDisplayKey === 'waende-verkleiden'
+  const groupTitles = selectedChoiceId === 'alles'
+    ? [
+      'TROCKENBAU | Basis-Haus',
+      'Art der Ausführung',
+      'Material',
+      'Dämmung',
+      'Beplankung',
+      'Extra Positionen',
+      'Fenster',
+      'Extras',
+      'Optionale Positionen',
+      'Optionen',
+    ]
+    : activeDisplayKey === 'waende-verkleiden'
     ? [
       'Art der Ausführung',
       'Material',

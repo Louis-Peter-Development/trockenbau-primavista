@@ -1103,7 +1103,8 @@ export const calculatorChoices = [
     buttonLabel: 'Kalkulator für Profis',
     image: serviceSpecialImage,
     alt: 'Trockenbau-Detail mit Prima Vista Prägung',
-    packageIds: packages.map((item) => item.id),
+    packageIds: ['decken', 'waende', 'estrich-boden', 'dachschraegen'],
+    combinesChoiceIds: ['decken', 'waende-stellen', 'waende-verkleiden', 'estrich', 'dachschraegen'],
     isDarkButton: true,
   },
 ];
