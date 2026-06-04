@@ -1,0 +1,258 @@
+/* Sister-site design layer for Trockenbau Prima Vista.
+   Keep this file presentational only so routes, forms, calculators, and data stay intact. */
+
+:is(
+  .services__eyebrow,
+  .calculator-teaser__eyebrow,
+  .ueber-uns__eyebrow,
+  .projects__eyebrow,
+  .reviews__eyebrow,
+  .contact__eyebrow,
+  .calculator-hero__eyebrow,
+  .request-section__eyebrow,
+  .legal-page__eyebrow
+) {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+:is(
+  .services__eyebrow,
+  .calculator-teaser__eyebrow,
+  .ueber-uns__eyebrow,
+  .projects__eyebrow,
+  .reviews__eyebrow,
+  .contact__eyebrow,
+  .calculator-hero__eyebrow,
+  .request-section__eyebrow,
+  .legal-page__eyebrow
+)::before {
+  content: '';
+  width: 28px;
+  height: 3px;
+  background: var(--pv-red);
+}
+
+:is(
+  .services__title,
+  .calculator-teaser__title,
+  .ueber-uns__title,
+  .projects__title,
+  .reviews__title,
+  .contact__title,
+  .calculator-hero__title,
+  .legal-page__title
+) {
+  color: var(--color-text-primary);
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+:is(
+  .services__text,
+  .calculator-teaser__text,
+  .ueber-uns__text,
+  .projects__text,
+  .reviews__text,
+  .contact__text,
+  .calculator-hero__text,
+  .legal-page__lede
+) {
+  color: var(--color-text-muted);
+}
+
+:is(
+  .services__card,
+  .ueber-uns__card,
+  .contact__info-item,
+  .contact__form-card,
+  .footer__brand,
+  .footer__column,
+  .calculator-teaser__estimate,
+  .summary-panel,
+  .selected-offer,
+  .configurator-section__card,
+  .request-section__form,
+  .legal-card
+) {
+  border-radius: 8px;
+  border-color: var(--color-border-card);
+  background: var(--color-surface-card-soft);
+  box-shadow: var(--color-shadow-sm);
+}
+
+:is(
+  .services__image-wrap,
+  .services__card,
+  .ueber-uns__image-wrap,
+  .calculator-teaser__image-frame,
+  .calculator-teaser__mini-frame,
+  .projects__featured,
+  .projects__item,
+  .project-detail__media,
+  .selected-offer__media,
+  .request-section__image,
+  .legal-page__panel
+) {
+  border-radius: 8px;
+}
+
+:is(
+  .services__card-title,
+  .ueber-uns__card-title,
+  .projects__featured-title,
+  .projects__item-title,
+  .footer__heading,
+  .contact__label,
+  .calculator-teaser__benefit,
+  .summary-panel__heading,
+  .selected-offer__title
+) {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.services,
+.projects {
+  background: var(--gradient-section);
+}
+
+.ueber-uns,
+.calculator-teaser,
+.contact {
+  background: var(--gradient-about);
+}
+
+.services__grid,
+.projects__grid {
+  gap: clamp(18px, 2vw, 24px);
+}
+
+.services__card {
+  box-shadow: var(--color-shadow-md);
+}
+
+.services__card:hover,
+.projects__featured:hover,
+.projects__item:hover,
+.ueber-uns__card:hover,
+.contact__info-item:hover {
+  box-shadow: var(--color-shadow-hover);
+}
+
+.calculator-teaser__button,
+.contact__button,
+.request-section__button,
+.anfrage__button {
+  border: 1.5px solid var(--color-accent);
+  border-radius: 2px;
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.calculator-teaser__button:hover,
+.contact__button:hover,
+.request-section__button:hover,
+.anfrage__button:hover {
+  border-color: var(--color-accent-hover);
+  background: var(--color-accent-hover);
+}
+
+:is(
+  input,
+  textarea,
+  select,
+  .contact__input,
+  .contact__textarea,
+  .anfrage__input,
+  .anfrage__textarea,
+  .anfrage__select
+) {
+  border-radius: 4px;
+  border-color: var(--color-border-input);
+  background: var(--color-surface-card-strong);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+}
+
+:is(input, textarea, select):focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: var(--color-focus-ring);
+}
+
+.footer {
+  background: var(--gradient-footer);
+  color: var(--pv-bone);
+  border-top-color: rgba(236, 229, 223, 0.14);
+}
+
+.footer :is(.footer__title, .footer__heading) {
+  color: var(--pv-bone);
+}
+
+.footer :is(.footer__text, .footer__item, .footer__copyright) {
+  color: var(--pv-text-on-dark-muted);
+}
+
+.footer__link {
+  color: var(--pv-text-on-dark-muted);
+}
+
+.footer__link:hover {
+  color: var(--pv-copper-bright);
+}
+
+.footer__brand,
+.footer__column {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(236, 229, 223, 0.12);
+}
+
+.footer__logo,
+.footer__social-link {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(236, 229, 223, 0.12);
+  color: var(--pv-bone);
+}
+
+.footer__bottom {
+  border-top-color: rgba(236, 229, 223, 0.14);
+}
+
+.theme-switcher__track {
+  border-color: var(--color-border-strong);
+  background: var(--color-surface-card-strong);
+}
+
+@media (max-width: 576px) {
+  :is(
+    .services__title,
+    .calculator-teaser__title,
+    .ueber-uns__title,
+    .projects__title,
+    .reviews__title,
+    .contact__title,
+    .calculator-hero__title,
+    .legal-page__title
+  ) {
+    font-size: clamp(38px, 13vw, 58px);
+  }
+}

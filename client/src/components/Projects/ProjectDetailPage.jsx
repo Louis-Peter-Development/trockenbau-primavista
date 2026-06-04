@@ -19,6 +19,14 @@ function ProjectDetailPage() {
     threshold: 0.12,
     rootMargin: '0px 0px -8% 0px',
   });
+  const { sectionRef: galleryRef, isVisible: isGalleryVisible } = useScrollReveal({
+    threshold: 0.12,
+    rootMargin: '0px 0px -8% 0px',
+  });
+  const { sectionRef: relatedRef, isVisible: isRelatedVisible } = useScrollReveal({
+    threshold: 0.12,
+    rootMargin: '0px 0px -8% 0px',
+  });
 
   if (!project) {
     return <Navigate to="/#referenzen" replace />;
@@ -112,16 +120,23 @@ function ProjectDetailPage() {
       </section>
 
       {project.gallery?.length ? (
-        <section className="project-detail__gallery">
+        <section
+          ref={galleryRef}
+          className={`project-detail__gallery${isGalleryVisible ? ' project-detail__gallery--visible' : ''}`}
+        >
           <div className="container">
-            <div className="project-detail__gallery-header">
+            <div className="project-detail__gallery-header project-detail__reveal">
               <span className="project-detail__eyebrow">Eindrücke</span>
               <h2 className="project-detail__section-title">Weitere Aufnahmen</h2>
             </div>
 
             <div className="project-detail__gallery-grid">
               {project.gallery.map((item, index) => (
-                <figure className="project-detail__gallery-item" key={`${item.alt}-${index}`}>
+                <figure
+                  className="project-detail__gallery-item project-detail__reveal"
+                  key={`${item.alt}-${index}`}
+                  style={{ transitionDelay: `${Math.min(index * 0.08, 0.24)}s` }}
+                >
                   <ResponsivePicture
                     image={item.image}
                     sizes={responsiveImageSizes.projectsGrid}
@@ -137,19 +152,23 @@ function ProjectDetailPage() {
         </section>
       ) : null}
 
-      <section className="project-detail__related">
+      <section
+        ref={relatedRef}
+        className={`project-detail__related${isRelatedVisible ? ' project-detail__related--visible' : ''}`}
+      >
         <div className="container">
-          <div className="project-detail__related-header">
+          <div className="project-detail__related-header project-detail__reveal">
             <span className="project-detail__eyebrow">Weitere Referenzen</span>
             <h2 className="project-detail__section-title">Mehr aus unseren Projekten</h2>
           </div>
 
           <div className="project-detail__related-grid">
-            {otherProjects.map((entry) => (
+            {otherProjects.map((entry, index) => (
               <PageLink
                 key={entry.slug}
-                className="project-detail__related-item"
+                className="project-detail__related-item project-detail__reveal"
                 to={`/referenzen/${entry.slug}`}
+                style={{ transitionDelay: `${Math.min(index * 0.08, 0.24)}s` }}
               >
                 <ResponsivePicture
                   image={entry.image}
@@ -166,7 +185,7 @@ function ProjectDetailPage() {
             ))}
           </div>
 
-          <PageLink className="project-detail__back" to="/#referenzen">
+          <PageLink className="project-detail__back project-detail__reveal" to="/#referenzen">
             <ArrowLeft size={18} strokeWidth={2.1} aria-hidden="true" />
             Zurück zur Übersicht
           </PageLink>

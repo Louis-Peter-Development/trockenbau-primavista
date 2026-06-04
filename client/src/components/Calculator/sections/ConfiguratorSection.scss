@@ -666,3 +666,75 @@
     font-size: 11px;
   }
 }
+
+/* Prima Vista Bauprojekte route alignment */
+
+.calculator-config {
+  background: var(--gradient-about);
+}
+
+.calculator-config__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+.calculator-config__eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 3px;
+  background: var(--pv-red);
+}
+
+.calculator-config__header h2,
+.calculator-config__group legend {
+  color: var(--color-text-primary);
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+  text-transform: none;
+}
+
+.calculator-config__header h2 {
+  font-size: clamp(46px, 5vw, 76px);
+}
+
+.calculator-config__group legend {
+  font-size: clamp(30px, 3vw, 44px);
+}
+
+.calculator-config__card,
+.calculator-config__mode button,
+.calculator-config__price-input,
+.calculator-config__component,
+.calculator-config__addon,
+.calculator-config__area-panel {
+  border-radius: 8px;
+  border-color: var(--color-border-card);
+  background: var(--color-surface-card-soft);
+}
+
+.calculator-config__card-title,
+.calculator-config__mode span,
+.calculator-config__component-content strong,
+.calculator-config__addon-content strong {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.calculator-config__card.is-selected,
+.calculator-config__mode button.is-selected,
+.calculator-config__addon.is-selected,
+.calculator-config__component.is-selected {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}

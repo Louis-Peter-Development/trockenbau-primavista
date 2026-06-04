@@ -26,6 +26,26 @@
   gap: 34px;
 }
 
+.legal-page__reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.legal-page__hero-grid--visible .legal-page__reveal,
+.legal-page__content--visible.legal-page__reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.legal-page__summary {
+  transition-delay: 0.12s;
+}
+
+.legal-page__content {
+  min-width: 0;
+}
+
 .legal-page__hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.62fr);
@@ -455,4 +475,104 @@
     margin-top: 24px;
     padding-top: 24px;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .legal-page__reveal,
+  .legal-page__hero-grid--visible .legal-page__reveal,
+  .legal-page__content--visible.legal-page__reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Prima Vista Bauprojekte route alignment */
+
+.legal-page {
+  background:
+    radial-gradient(circle at top left, rgba(200, 154, 106, 0.09), transparent 34%),
+    var(--pv-ink-1);
+  color: var(--pv-bone);
+}
+
+.legal-page__hero,
+.legal-page__summary,
+.legal-page__card,
+.legal-page__meta-row {
+  border-radius: 8px;
+  border-color: rgba(236, 229, 223, 0.14);
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: var(--color-shadow-md);
+}
+
+.legal-page__back-link,
+.legal-page__kicker,
+.legal-page__switch-link,
+.legal-page__summary-label,
+.legal-page__label {
+  border-radius: 2px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.legal-page__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--pv-copper-bright);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+.legal-page__eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 3px;
+  background: var(--pv-red);
+}
+
+.legal-page__title,
+.legal-page__card-title {
+  color: var(--pv-bone);
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+}
+
+.legal-page__title {
+  max-width: none;
+  font-size: clamp(50px, 6vw, 92px);
+}
+
+.legal-page__text,
+.legal-page__summary-text,
+.legal-page__address,
+.legal-page__paragraph,
+.legal-page__meta,
+.legal-page__list {
+  color: var(--pv-text-on-dark-muted);
+}
+
+.legal-page__heading,
+.legal-page__meta-row dt,
+.legal-page__link,
+.legal-page__summary-link {
+  color: var(--pv-bone);
+}
+
+.legal-page__switch-link.is-active,
+.legal-page__switch-link:hover {
+  background: var(--pv-copper-bright);
+  color: var(--pv-ink-1);
+}
+
+.legal-page__card::before {
+  border-radius: 8px 8px 0 0;
 }

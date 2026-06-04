@@ -11,7 +11,9 @@
 }
 
 .project-detail__hero--visible .project-detail__reveal,
-.project-detail__content--visible .project-detail__reveal {
+.project-detail__content--visible .project-detail__reveal,
+.project-detail__gallery--visible .project-detail__reveal,
+.project-detail__related--visible .project-detail__reveal {
   opacity: 1;
   transform: translateY(0);
 }
@@ -353,7 +355,9 @@
 @media (prefers-reduced-motion: reduce) {
   .project-detail__reveal,
   .project-detail__hero--visible .project-detail__reveal,
-  .project-detail__content--visible .project-detail__reveal {
+  .project-detail__content--visible .project-detail__reveal,
+  .project-detail__gallery--visible .project-detail__reveal,
+  .project-detail__related--visible .project-detail__reveal {
     opacity: 1;
     transform: none;
     transition: none;
@@ -380,6 +384,7 @@
 
 @media (max-width: 576px) {
   .project-detail__hero {
+    min-height: auto;
     padding: 80px 0 40px;
   }
 
@@ -394,5 +399,124 @@
   .project-detail__related-grid,
   .project-detail__gallery-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Prima Vista Bauprojekte route alignment */
+
+.project-detail {
+  background: var(--color-page-bg);
+}
+
+.project-detail__hero {
+  display: flex;
+  align-items: center;
+  min-height: calc(100svh - 89px);
+  background:
+    radial-gradient(circle at top left, rgba(200, 154, 106, 0.09), transparent 34%),
+    var(--pv-ink-1);
+  color: var(--pv-bone);
+}
+
+.project-detail__hero-container {
+  width: 100%;
+  align-content: center;
+}
+
+.project-detail__breadcrumb,
+.project-detail__eyebrow,
+.project-detail__cta,
+.project-detail__back,
+.project-detail__facts-row dt {
+  font-family: var(--font-display);
+}
+
+.project-detail__breadcrumb {
+  color: var(--pv-text-on-dark-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.project-detail__breadcrumb a {
+  color: var(--pv-bone);
+}
+
+.project-detail__breadcrumb span,
+.project-detail__breadcrumb a:hover,
+.project-detail__eyebrow {
+  color: var(--pv-copper-bright);
+}
+
+.project-detail__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+.project-detail__eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 3px;
+  background: var(--pv-red);
+}
+
+.project-detail__title {
+  color: var(--pv-bone);
+  font-family: var(--font-serif);
+  font-size: clamp(52px, 7vw, 108px);
+  font-weight: 500;
+  letter-spacing: -0.014em;
+  line-height: 0.98;
+}
+
+.project-detail__lead {
+  color: var(--pv-text-on-dark-muted);
+}
+
+.project-detail__cta {
+  border: 1.5px solid var(--pv-copper-bright);
+  border-radius: 2px;
+  background: var(--pv-copper-bright);
+  color: var(--pv-ink-1);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.project-detail__cta--ghost {
+  background: transparent;
+  color: var(--pv-bone);
+  border-color: rgba(236, 229, 223, 0.52);
+}
+
+.project-detail__cta:hover,
+.project-detail__cta--ghost:hover {
+  background: var(--pv-copper-bright);
+  color: var(--pv-ink-1);
+}
+
+.project-detail__hero-media,
+.project-detail__facts,
+.project-detail__gallery-item,
+.project-detail__related-item {
+  border-radius: 8px;
+}
+
+.project-detail__section-title,
+.project-detail__related-header h2,
+.project-detail__gallery-header h2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 576px) {
+  .project-detail__hero {
+    min-height: auto;
   }
 }

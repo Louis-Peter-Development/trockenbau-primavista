@@ -74,28 +74,65 @@ function Footer({ isHomePage = true }) {
           <div className="footer__links">
             <div className="footer__column">
               <h4 className="footer__heading">Navigation</h4>
-              <HashLink to={getSectionHref('leistungen')} className="footer__link">Leistungen</HashLink>
-              <HashLink to={getSectionHref('referenzen')} className="footer__link">Referenzen</HashLink>
-              <HashLink to={getSectionHref('ueber-uns')} className="footer__link">Über uns</HashLink>
-              <PageLink to="/kalkulator" className="footer__link">Kalkulator</PageLink>
-              <HashLink to={getSectionHref('kontakt')} className="footer__link">Kontakt</HashLink>
+              <HashLink to={getSectionHref('leistungen')} className="footer__link">
+                <span className="footer__link-icon" aria-hidden="true">01</span>
+                <span>Leistungen</span>
+              </HashLink>
+              <HashLink to={getSectionHref('referenzen')} className="footer__link">
+                <span className="footer__link-icon" aria-hidden="true">02</span>
+                <span>Referenzen</span>
+              </HashLink>
+              <HashLink to={getSectionHref('ueber-uns')} className="footer__link">
+                <span className="footer__link-icon" aria-hidden="true">03</span>
+                <span>Über uns</span>
+              </HashLink>
+              <PageLink to="/kalkulator" className="footer__link">
+                <span className="footer__link-icon" aria-hidden="true">04</span>
+                <span>Kalkulator</span>
+              </PageLink>
+              <HashLink to={getSectionHref('kontakt')} className="footer__link">
+                <span className="footer__link-icon" aria-hidden="true">05</span>
+                <span>Kontakt</span>
+              </HashLink>
             </div>
 
             <div className="footer__column">
               <h4 className="footer__heading">Leistungen</h4>
-              <span className="footer__item">Decken abhängen</span>
-              <span className="footer__item">Wände stellen</span>
-              <span className="footer__item">Estrich-Boden</span>
-              <span className="footer__item">Dachschrägen</span>
-              <span className="footer__item">Sonstiges</span>
+              <span className="footer__item">
+                <span className="footer__link-icon" aria-hidden="true">01</span>
+                <span>Decken abhängen</span>
+              </span>
+              <span className="footer__item">
+                <span className="footer__link-icon" aria-hidden="true">02</span>
+                <span>Wände stellen</span>
+              </span>
+              <span className="footer__item">
+                <span className="footer__link-icon" aria-hidden="true">03</span>
+                <span>Estrich-Boden</span>
+              </span>
+              <span className="footer__item">
+                <span className="footer__link-icon" aria-hidden="true">04</span>
+                <span>Dachschrägen</span>
+              </span>
+              <span className="footer__item">
+                <span className="footer__link-icon" aria-hidden="true">05</span>
+                <span>Sonstiges</span>
+              </span>
             </div>
 
             <div className="footer__column">
               <h4 className="footer__heading">Kontakt</h4>
-              <span className="footer__item">Spinnereistrasse 5, 6020 Emmenbrücke, Schweiz</span>
-              <a href="tel:+41782659332" className="footer__link">+41 78 265 93 32</a>
+              <span className="footer__item footer__item--address">
+                <span className="footer__link-icon" aria-hidden="true">CH</span>
+                <span>Spinnereistrasse 5, 6020 Emmenbrücke, Schweiz</span>
+              </span>
+              <a href="tel:+41782659332" className="footer__link">
+                <span className="footer__link-icon" aria-hidden="true">☎</span>
+                <span>+41 78 265 93 32</span>
+              </a>
               <a href="mailto:info@trockenbau-primavista.ch" className="footer__link">
-                info@trockenbau-primavista.ch
+                <span className="footer__link-icon" aria-hidden="true">@</span>
+                <span>info@trockenbau-primavista.ch</span>
               </a>
             </div>
 

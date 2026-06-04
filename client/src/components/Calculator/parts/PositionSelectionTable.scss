@@ -510,3 +510,35 @@
     font-size: 15px;
   }
 }
+
+/* Prima Vista Bauprojekte route alignment */
+
+.calculator-config__positions,
+.calculator-config__position-actions {
+  border-radius: 8px;
+}
+
+.calculator-config__positions-head {
+  background: var(--pv-ink-1);
+  color: var(--pv-bone);
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.calculator-config__positions-group,
+.calculator-config__position-name strong,
+.calculator-config__position-total,
+.calculator-config__position-quantity input,
+.calculator-config__position-price input {
+  font-family: var(--font-display);
+}
+
+.calculator-config__position-quantity input {
+  border-radius: 4px;
+}
+
+.calculator-config__position-action {
+  border-radius: 2px;
+}

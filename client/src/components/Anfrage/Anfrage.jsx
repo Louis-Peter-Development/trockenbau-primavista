@@ -17,6 +17,7 @@ import {
   Zap,
 } from 'lucide-react';
 import './Anfrage.scss';
+import useScrollReveal from '../../hooks/useScrollReveal';
 import useSuccessView from '../../hooks/useSuccessView';
 import { submitProjectForm } from '../../utils/formSubmission';
 import FormErrorMessage from '../FormErrorMessage/FormErrorMessage';
@@ -79,6 +80,10 @@ const timelines = [
 const TOTAL_STEPS = 5;
 
 function Anfrage() {
+  const { sectionRef: anfrageRef, isVisible } = useScrollReveal({
+    threshold: 0.16,
+    rootMargin: '0px 0px -8% 0px',
+  });
   const [step, setStep] = useState(0);
   const [animKey, setAnimKey] = useState(0);
   const [service, setService] = useState('');
@@ -215,7 +220,10 @@ function Anfrage() {
   const progressPercent = ((step + 1) / TOTAL_STEPS) * 100;
 
   return (
-    <div className="anfrage">
+    <div
+      ref={anfrageRef}
+      className={`anfrage${isVisible ? ' anfrage--visible' : ''}`}
+    >
       <div
         className="anfrage__progress"
         role="progressbar"
@@ -228,13 +236,13 @@ function Anfrage() {
       </div>
 
       <div className="anfrage__container">
-        <nav className="anfrage__breadcrumb" aria-label="Breadcrumb">
+        <nav className="anfrage__breadcrumb anfrage__reveal" aria-label="Breadcrumb">
           <Link to="/">Startseite</Link>
           <ChevronRight size={15} strokeWidth={2.2} aria-hidden="true" />
           <span>Anfrage</span>
         </nav>
 
-        <div className="anfrage__step" key={animKey}>
+        <div className="anfrage__step anfrage__reveal" key={animKey}>
           {step === 0 && (
             <div className="anfrage__step-content">
               <span className="anfrage__eyebrow">Schritt 1 von {TOTAL_STEPS}</span>
@@ -488,7 +496,7 @@ function Anfrage() {
         </div>
       </div>
 
-      <footer className="anfrage__footer">
+      <footer className="anfrage__footer anfrage__reveal">
         Der Service ist unverbindlich. Wir melden uns persönlich mit einer Einschätzung.
       </footer>
     </div>
