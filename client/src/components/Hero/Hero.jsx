@@ -127,13 +127,13 @@ function Hero() {
         <span className="hero__bg-overlay" />
       </div>
       <div className="container hero__container">
-        <div className="hero__content">
-          <div className="hero__topline hero__reveal" aria-hidden="true">
-            <span><span className="dot" />Prima Vista</span>
-            <span>Innenausbau</span>
-            <span>Trockenbau</span>
-          </div>
+        <div className="hero__topline hero__reveal" aria-hidden="true">
+          <span><span className="dot" />Prima Vista</span>
+          <span>Innenausbau</span>
+          <span>Trockenbau</span>
+        </div>
 
+        <div className="hero__content">
           <span className="hero__eyebrow hero__reveal">TROCKENBAU FÜR DECKEN & WÄNDE</span>
 
           <h1 className="hero__title hero__reveal">
