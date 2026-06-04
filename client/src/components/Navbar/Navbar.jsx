@@ -169,8 +169,8 @@ function Navbar({ isHomePage = true, currentPath = '/' }) {
             className="navbar__logo"
           />
           <div className="navbar__brand-text">
-            <span className="navbar__name">Trockenbau Prima Vista</span>
-            <span className="navbar__tagline">Decken, Wände und Ausbau</span>
+            <span className="navbar__name">Prima Vista</span>
+            <span className="navbar__tagline">Trockenbau</span>
           </div>
         </HashLink>
 
