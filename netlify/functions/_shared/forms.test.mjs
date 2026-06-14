@@ -96,3 +96,18 @@ test('honeypot check runs after length validation', async () => {
     413,
   );
 });
+
+test('rejects submissions with too many fields', async () => {
+  const extraFields = Object.fromEntries(
+    Array.from({ length: 41 }, (_, index) => [`field_${index}`, 'value']),
+  );
+
+  await expectFormError(
+    {
+      formName: 'contact',
+      submission: { ...validContact, ...extraFields },
+    },
+    413,
+    /too many fields/i,
+  );
+});

@@ -1,4 +1,4 @@
-const GA_MEASUREMENT_ID = 'G-3RYZDCMPBX';
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-3RYZDCMPBX';
 const GTAG_SCRIPT_ID = 'prima-vista-gtag';
 
 export const COOKIE_CONSENT_STORAGE_KEY = 'cookie-consent';
@@ -30,7 +30,11 @@ export const setCookieConsent = (value) => {
 };
 
 export const initializeAnalytics = () => {
-  if (typeof window === 'undefined' || document.getElementById(GTAG_SCRIPT_ID)) {
+  if (
+    typeof window === 'undefined' ||
+    !GA_MEASUREMENT_ID ||
+    document.getElementById(GTAG_SCRIPT_ID)
+  ) {
     return;
   }
 
@@ -47,7 +51,9 @@ export const initializeAnalytics = () => {
   document.head.appendChild(script);
 
   window.gtag('js', new Date());
-  window.gtag('config', GA_MEASUREMENT_ID);
+  window.gtag('config', GA_MEASUREMENT_ID, {
+    anonymize_ip: true,
+  });
 };
 
 export const initializeAnalyticsIfConsented = () => {

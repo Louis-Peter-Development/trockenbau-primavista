@@ -16,6 +16,8 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const FIELD_MAX_LENGTH = 1000;
 const LONG_FIELD_MAX_LENGTH = 5000;
+const MAX_FIELD_COUNT = 40;
+const FIELD_NAME_MAX_LENGTH = 80;
 const LONG_FIELDS = new Set(['message', 'notes', 'details', 'description', 'comments']);
 
 const fieldExceedsLength = (key, value) => {
@@ -30,6 +32,10 @@ const fieldExceedsLength = (key, value) => {
 
 const findOversizedField = (submission) => {
   for (const [key, value] of Object.entries(submission)) {
+    if (key.length > FIELD_NAME_MAX_LENGTH) {
+      return key;
+    }
+
     if (fieldExceedsLength(key, value)) {
       return key;
     }
@@ -62,6 +68,10 @@ export const submitForm = async ({ formName, submission }) => {
 
   if (!normalizedSubmission || !ALLOWED_FORM_NAMES.includes(normalizedFormName)) {
     throw new FormSubmissionError(400, 'Invalid submission payload.');
+  }
+
+  if (Object.keys(normalizedSubmission).length > MAX_FIELD_COUNT) {
+    throw new FormSubmissionError(413, 'Submission includes too many fields.');
   }
 
   const oversizedField = findOversizedField(normalizedSubmission);
@@ -120,7 +130,15 @@ export const submitForm = async ({ formName, submission }) => {
     status: 'accepted',
     formName: normalizedFormName,
     spam: false,
-    emails: emailResult,
+    emails: {
+      status: emailResult.status,
+      confirmation: {
+        status: emailResult.confirmation?.status ?? null,
+      },
+      internalNotification: {
+        status: emailResult.internalNotification?.status ?? null,
+      },
+    },
     submissionId: readText(normalizedSubmission, 'confirmation_request_id') || null,
   };
 };

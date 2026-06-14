@@ -1,6 +1,12 @@
 import OpenAI from 'openai';
 
 let openaiClient = null;
+const CHAT_MODEL = process.env.OPENAI_CHAT_MODEL || 'gpt-4o-mini';
+const MAX_MESSAGES = 12;
+const MAX_MESSAGE_CHARS = 1200;
+const MAX_TOTAL_CHARS = 6000;
+const DEFAULT_OPENAI_TIMEOUT_MS = 12000;
+const DEFAULT_MAX_TOKENS = 500;
 
 const getOpenAIClient = () => {
   if (!openaiClient) {
@@ -33,7 +39,31 @@ const sanitizeMessages = (messages) =>
         && (message.role === 'user' || message.role === 'assistant')
         && typeof message.content === 'string',
     )
-    .slice(-12);
+    .map((message) => ({
+      role: message.role,
+      content: message.content.trim().slice(0, MAX_MESSAGE_CHARS),
+    }))
+    .filter((message) => message.content)
+    .slice(-MAX_MESSAGES);
+
+const parsePositiveInteger = (value, fallback) => {
+  const parsedValue = Number.parseInt(value, 10);
+  return Number.isFinite(parsedValue) && parsedValue > 0 ? parsedValue : fallback;
+};
+
+const createTimeoutController = () => {
+  const controller = new AbortController();
+  const timeoutMs = parsePositiveInteger(
+    process.env.OPENAI_TIMEOUT_MS,
+    DEFAULT_OPENAI_TIMEOUT_MS,
+  );
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+  return {
+    signal: controller.signal,
+    clear: () => clearTimeout(timeoutId),
+  };
+};
 
 export const buildChatReply = async (messages) => {
   if (!Array.isArray(messages) || messages.length === 0) {
@@ -46,6 +76,19 @@ export const buildChatReply = async (messages) => {
     throw new ChatRequestError(400, 'No valid messages after sanitization.', 'Bitte senden Sie eine gültige Nachricht.');
   }
 
+  const totalCharacters = sanitizedMessages.reduce(
+    (total, message) => total + message.content.length,
+    0,
+  );
+
+  if (totalCharacters > MAX_TOTAL_CHARS) {
+    throw new ChatRequestError(
+      413,
+      'Chat payload too large.',
+      'Ihre Nachricht ist zu lang. Bitte kürzen Sie die Anfrage etwas.',
+    );
+  }
+
   if (!process.env.OPENAI_API_KEY) {
     throw new ChatRequestError(
       500,
@@ -54,13 +97,19 @@ export const buildChatReply = async (messages) => {
     );
   }
 
+  const timeoutController = createTimeoutController();
+
   try {
     const completion = await getOpenAIClient().chat.completions.create({
-      model: 'gpt-4o-mini',
+      model: CHAT_MODEL,
       messages: [
         systemMessage,
         ...sanitizedMessages,
       ],
+      max_tokens: parsePositiveInteger(process.env.OPENAI_MAX_TOKENS, DEFAULT_MAX_TOKENS),
+      temperature: 0.3,
+    }, {
+      signal: timeoutController.signal,
     });
 
     const reply = completion.choices[0]?.message?.content?.trim();
@@ -71,10 +120,16 @@ export const buildChatReply = async (messages) => {
 
     return reply;
   } catch (error) {
+    const isAbortError = error instanceof Error && error.name === 'AbortError';
+
     throw new ChatRequestError(
-      500,
+      isAbortError ? 504 : 500,
       error instanceof Error ? error.message : 'OpenAI request failed.',
-      'Es gab einen Fehler. Bitte versuchen Sie es später erneut.',
+      isAbortError
+        ? 'Der Chat braucht gerade zu lange. Bitte versuchen Sie es gleich erneut.'
+        : 'Es gab einen Fehler. Bitte versuchen Sie es später erneut.',
     );
+  } finally {
+    timeoutController.clear();
   }
 };

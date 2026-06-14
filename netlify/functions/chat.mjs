@@ -1,12 +1,27 @@
 import { buildChatReply, ChatRequestError } from './_shared/chat.mjs';
-import { errorResponse, jsonResponse, readJsonBody } from './_shared/http.mjs';
+import {
+  RequestBodyTooLargeError,
+  errorResponse,
+  jsonResponse,
+  readJsonBody,
+} from './_shared/http.mjs';
 
 export default async (request) => {
   if (request.method !== 'POST') {
     return errorResponse(405, 'Method not allowed.');
   }
 
-  const body = await readJsonBody(request);
+  let body;
+
+  try {
+    body = await readJsonBody(request, { maxBytes: 24 * 1024 });
+  } catch (error) {
+    if (error instanceof RequestBodyTooLargeError) {
+      return errorResponse(error.status, 'Request body is too large.');
+    }
+
+    throw error;
+  }
 
   if (!body) {
     return errorResponse(400, 'Invalid JSON body.');
