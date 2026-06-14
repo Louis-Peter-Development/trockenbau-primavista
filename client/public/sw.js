@@ -10,6 +10,7 @@ const APP_SHELL_URLS = [
   '/pwa-512x512.png',
   '/maskable-icon-512x512.png',
 ];
+const STATIC_ASSET_PATTERN = /\.(?:css|js|mjs|json|png|jpg|jpeg|webp|svg|ico|woff2?)$/i;
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -46,6 +47,16 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  const requestCacheControl = event.request.headers.get('cache-control') || '';
+  const shouldBypassCache =
+    requestUrl.pathname.startsWith('/api/') ||
+    event.request.cache === 'no-store' ||
+    requestCacheControl.includes('no-store');
+
+  if (shouldBypassCache) {
+    return;
+  }
+
   const isVideoRequest =
     event.request.destination === 'video' ||
     event.request.headers.has('range') ||
@@ -63,6 +74,15 @@ self.addEventListener('fetch', (event) => {
         return cachedPage || Response.error();
       })
     );
+    return;
+  }
+
+  const isCacheableStaticAsset =
+    requestUrl.pathname.startsWith('/assets/') ||
+    APP_SHELL_URLS.includes(requestUrl.pathname) ||
+    STATIC_ASSET_PATTERN.test(requestUrl.pathname);
+
+  if (!isCacheableStaticAsset) {
     return;
   }
 

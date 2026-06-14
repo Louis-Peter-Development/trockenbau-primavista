@@ -472,10 +472,10 @@ export const processConfirmationRequest = async ({ formName, submission }) => {
 
   console.log('[confirmations] Processing submission', {
     formName: normalizedFormName,
-    recipientEmail: recipientEmail || null,
+    hasRecipientEmail: Boolean(recipientEmail),
     confirmationRequested,
     confirmationEnabled: mailConfig.emailEnabled,
-    notificationRecipient: mailConfig.notificationRecipient || null,
+    hasNotificationRecipient: Boolean(mailConfig.notificationRecipient),
   });
 
   if (shouldSendCustomerConfirmation) {
@@ -506,7 +506,7 @@ export const processConfirmationRequest = async ({ formName, submission }) => {
 
       console.error('[confirmations] Customer confirmation failed', {
         formName: normalizedFormName,
-        recipientEmail,
+        hasRecipientEmail: Boolean(recipientEmail),
         error: getErrorMessage(error),
       });
     }
@@ -555,7 +555,7 @@ export const processConfirmationRequest = async ({ formName, submission }) => {
 
       console.error('[confirmations] Internal notification failed', {
         formName: normalizedFormName,
-        notificationRecipient: mailConfig.notificationRecipient,
+        hasNotificationRecipient: Boolean(mailConfig.notificationRecipient),
         error: getErrorMessage(error),
       });
     }

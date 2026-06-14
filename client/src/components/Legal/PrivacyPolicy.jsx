@@ -118,8 +118,10 @@ function PrivacyPolicy() {
           Unsere Webseite nutzt Cookies und ähnliche Speichertechnologien, um die
           Benutzerfreundlichkeit zu verbessern und Ihre Auswahl im Cookie-Banner zu
           speichern. Beim Besuch unserer Seite werden zudem Logfiles erstellt.
-          Analyse- oder Tracking-Tools wie Google Analytics setzen wir derzeit
-          nicht ein.
+          Google Analytics laden wir erst, wenn Sie der optionalen Analyse im
+          Cookie-Banner zustimmen. Dabei können technische Nutzungsdaten an Google
+          übermittelt werden, damit wir die Website-Nutzung besser verstehen und
+          unser Angebot verbessern können.
         </p>
         <p className="legal-page__paragraph">
           Uns ist ein verantwortungsvoller und transparenter Umgang mit Ihren Daten

@@ -1,6 +1,0 @@
-services:
-  - type: web
-    name: trockenbau-primavista
-    runtime: node
-    buildCommand: npm install && npm --prefix ../server install && npm run build
-    startCommand: npm run start
