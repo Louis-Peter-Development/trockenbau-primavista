@@ -12,7 +12,9 @@ export default defineConfig({
     port: 5178,
     strictPort: true,
     proxy: {
-      '/api': 'http://localhost:8787',
+      // Netlify Dev serves the functions/redirects on 8888 (see netlify.toml [dev]).
+      // Only used when hitting Vite directly; under `netlify dev` requests come via 8888.
+      '/api': 'http://localhost:8888',
     },
   },
 });
