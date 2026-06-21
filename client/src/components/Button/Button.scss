@@ -12,7 +12,7 @@
   color: var(--color-text-primary);
   font-family: var(--font-display);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.18em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -24,6 +24,18 @@
     background-color 0.2s ease,
     border-color 0.2s ease,
     transform 0.2s ease;
+}
+
+.button__arrow {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1;
+  transform: translateY(-1px);
+  transition: transform 0.2s var(--pv-ease-out);
+}
+
+.button:hover .button__arrow {
+  transform: translate(3px, -1px);
 }
 
 .button-primary {

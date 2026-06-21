@@ -102,11 +102,6 @@ function Hero() {
   }, []);
 
   const mainSlide = heroSlides[activeSlide];
-  const detailSlides = [
-    heroSlides[(activeSlide + 1) % heroSlides.length],
-    heroSlides[(activeSlide + 2) % heroSlides.length],
-  ];
-
   return (
     <section
       id="top"
@@ -126,72 +121,36 @@ function Hero() {
         />
         <span className="hero__bg-overlay" />
       </div>
-      <div className="container hero__container">
+
+      <div className="hero__inner">
         <div className="hero__topline hero__reveal" aria-hidden="true">
           <span><span className="dot" />Prima Vista</span>
-          <span>Innenausbau</span>
-          <span>Trockenbau</span>
+          <span>Innenausbau & Trockenbau — sauber geplant</span>
+          <span>N° 01 / Emmenbrücke</span>
         </div>
 
-        <div className="hero__content">
-          <span className="hero__eyebrow hero__reveal">TROCKENBAU FÜR DECKEN & WÄNDE</span>
+        <h1 className="hero__headline hero__reveal">
+          <span className="hero__headline-line"><em>Trockenbau</em> für</span>
+          <span className="hero__headline-line">Decken, Wände</span>
+          <span className="hero__headline-line">und Dachschrägen.</span>
+        </h1>
 
-          <h1 className="hero__title hero__reveal">
-            Trockenbau für Decken, Wände und Dachschrägen
-          </h1>
-
-          <p className="hero__text hero__reveal">
-            Wir planen und realisieren abgehängte Decken, Trennwände,
-            Estrich-Boden, Dachschrägen und Sonderlösungen sauber,
-            nachvollziehbar und mit direkter Anfrageoption über den Kalkulator.
-          </p>
-
-          <div className="hero__actions hero__reveal">
-            <Button href="/anfrage" variant="primary">Jetzt Anfrage stellen</Button>
-            <Button href="/kalkulator" variant="secondary">Kosten kalkulieren</Button>
-            <Button href="#leistungen" variant="secondary">Unsere Leistungen</Button>
+        <div className="hero__meta hero__reveal">
+          <div>
+            <div className="hero__meta-num">01 — Trockenbau für Decken & Wände</div>
+            <p className="hero__lede">
+              <strong>Saubere Ausführung aus einer Hand</strong> — abgehängte Decken,
+              Trennwände, Estrich-Boden, Dachschrägen und Sonderlösungen mit
+              direkter Anfrageoption über den Kalkulator.
+            </p>
           </div>
-        </div>
-
-        <div className="hero__visual hero__reveal">
-          <div className="hero__showcase">
-            <div className="hero__photo-frame hero__photo-frame--main">
-              <ResponsivePicture
-                key={`${mainSlide.alt}-main`}
-                image={mainSlide.image}
-                sizes={responsiveImageSizes.heroMain}
-                alt={mainSlide.alt}
-                loading="eager"
-                decoding="sync"
-                fetchPriority="high"
-                className="hero__photo hero__photo--main hero__photo--active"
-              />
-
-              <div className="hero__overlay hero__overlay--quality hero__reveal">
-                <span className="hero__overlay-label">{mainSlide.label}</span>
-                <strong>{mainSlide.title}</strong>
-                <span>{mainSlide.text}</span>
-              </div>
-            </div>
-
-            <div className="hero__detail-stack">
-              {detailSlides.map((detailSlide, detailIndex) => (
-                <div
-                  className="hero__photo-frame hero__photo-frame--detail hero__reveal"
-                  key={`detail-frame-${detailIndex}`}
-                >
-                  <ResponsivePicture
-                    key={`${detailSlide.alt}-detail-${detailIndex}`}
-                    image={detailSlide.image}
-                    sizes={responsiveImageSizes.heroDetail}
-                    alt={detailSlide.alt}
-                    loading="lazy"
-                    decoding="async"
-                    className="hero__photo hero__photo--detail-slide hero__photo--active"
-                  />
-                  <span className="hero__detail-label">{detailSlide.label}</span>
-                </div>
-              ))}
+          <div />
+          <div className="hero__cta">
+            <small>Erste Einschätzung sofort</small>
+            <div className="hero__actions">
+              <Button href="/anfrage" variant="primary">Jetzt Anfrage stellen</Button>
+              <Button href="/kalkulator" variant="secondary">Kosten kalkulieren</Button>
+              <Button href="#leistungen" variant="secondary">Leistungen</Button>
             </div>
           </div>
         </div>

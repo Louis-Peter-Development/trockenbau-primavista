@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { flushSync } from 'react-dom';
 import './Navbar.scss';
-import { logoImage } from '../../assets/responsiveImages';
+import { logoImage, projectFeaturedModernizationImage } from '../../assets/responsiveImages';
 import Button from '../Button/Button';
 import HashLink from '../HashLink/HashLink';
+import PageLink from '../PageLink/PageLink';
 import ResponsivePicture from '../ResponsivePicture/ResponsivePicture';
 import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher';
 import { getScrollBehavior, scrollToHashTarget } from '../../utils/hashNavigation';
@@ -20,6 +21,14 @@ const navItems = [
   { id: 'referenzen', label: 'Referenzen' },
   { id: 'kontakt', label: 'Kontakt' },
 ];
+
+const mobileFeature = {
+  image: projectFeaturedModernizationImage,
+  eyebrow: 'Im Fokus · Trockenbau',
+  title: 'Decken, Wände',
+  accent: 'und Ausbau.',
+  meta: 'Emmenbrücke · Schweiz',
+};
 
 function Navbar({ isHomePage = true, currentPath = '/' }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -207,6 +216,7 @@ function Navbar({ isHomePage = true, currentPath = '/' }) {
           onClick={toggleMenu}
           aria-label={menuOpen ? 'Menü schließen' : 'Menü öffnen'}
           aria-expanded={menuOpen}
+          aria-controls="navbar-mobile-menu"
           type="button"
         >
           <span className="navbar__toggle-line"></span>
@@ -215,9 +225,34 @@ function Navbar({ isHomePage = true, currentPath = '/' }) {
         </button>
       </div>
 
-      <div className={`navbar__mobile ${menuOpen ? 'is-open' : ''}${isInstantClosing ? ' is-instant' : ''}`}>
+      <div
+        id="navbar-mobile-menu"
+        className={`navbar__mobile ${menuOpen ? 'is-open' : ''}${isInstantClosing ? ' is-instant' : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Hauptnavigation"
+        hidden={!menuOpen}
+      >
+        <PageLink to="/kalkulator" className="navbar__mobile-feature" onClick={closeMenu}>
+          <ResponsivePicture
+            image={mobileFeature.image}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="navbar__mobile-feature-image"
+          />
+          <span className="navbar__mobile-feature-overlay" aria-hidden="true" />
+          <span className="navbar__mobile-feature-eyebrow">{mobileFeature.eyebrow}</span>
+          <span className="navbar__mobile-feature-body">
+            <span className="navbar__mobile-feature-title">
+              {mobileFeature.title} <em>{mobileFeature.accent}</em>
+            </span>
+            <span className="navbar__mobile-feature-meta">{mobileFeature.meta}</span>
+          </span>
+        </PageLink>
+
         <nav className="navbar__mobile-nav">
-          {navItems.map((item) => {
+          {navItems.map((item, index) => {
             const className = `navbar__mobile-link${
               visibleActiveSection === item.id || isPageItemActive(item) ? ' is-active' : ''
             }`;
@@ -228,21 +263,28 @@ function Navbar({ isHomePage = true, currentPath = '/' }) {
                 to={getItemHref(item)}
                 className={className}
                 onClick={handleNavClick(item)}
+                style={{ '--i': index }}
               >
-                {item.label}
+                <span>{item.label}</span>
+                <span className="navbar__mobile-num">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
               </HashLink>
             );
           })}
 
-          <div className="navbar__mobile-cta">
+          <div className="navbar__mobile-actions">
             <Button href="/anfrage" variant="primary">
               Jetzt Anfrage stellen
             </Button>
+            <Button href="/kalkulator" variant="secondary">
+              Kosten kalkulieren
+            </Button>
           </div>
 
-          <div className="navbar__mobile-theme">
-            <ThemeSwitcher />
-          </div>
+          <a href="tel:+41782659332" className="navbar__mobile-phone">
+            oder direkt anrufen · +41 78 265 93 32
+          </a>
         </nav>
       </div>
     </header>

@@ -1,4 +1,3 @@
-import { MoonStar, SunMedium } from 'lucide-react';
 import './ThemeSwitcher.scss';
 import { useTheme } from '../../hooks/useTheme';
 
@@ -6,7 +5,6 @@ function ThemeSwitcher() {
   const { resolvedTheme, setThemePreference } = useTheme();
   const isDark = resolvedTheme === 'dark';
   const nextTheme = isDark ? 'light' : 'dark';
-  const Icon = isDark ? MoonStar : SunMedium;
   const label = isDark ? 'Zu hellem Modus wechseln' : 'Zu dunklem Modus wechseln';
 
   return (
@@ -15,9 +13,14 @@ function ThemeSwitcher() {
       className="theme-switcher"
       onClick={() => setThemePreference(nextTheme)}
       aria-label={label}
+      aria-pressed={isDark}
       title={label}
     >
-      <Icon size={18} strokeWidth={2.1} aria-hidden="true" />
+      <span className="theme-switcher__track" aria-hidden="true">
+        <span className="theme-switcher__sun" />
+        <span className="theme-switcher__moon" />
+        <span className="theme-switcher__knob" />
+      </span>
     </button>
   );
 }
