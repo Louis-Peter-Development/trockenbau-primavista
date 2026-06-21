@@ -9,6 +9,8 @@
   --pv-copper-ink: #7a5b37;
   --pv-red: #b61d1a;
   --pv-red-deep: #8a1614;
+  --pv-success: #4a7a3f;
+  --pv-warn: #c08a1f;
 
   --pv-ink: #141312;
   --pv-ink-1: #1a1a1a;
@@ -28,6 +30,41 @@
   --pv-text-on-light: #1a1a1a;
   --pv-text-on-light-muted: #5b5752;
   --pv-text-on-light-faint: #8a857f;
+
+  --pv-space-1: 4px;
+  --pv-space-2: 8px;
+  --pv-space-3: 12px;
+  --pv-space-4: 16px;
+  --pv-space-5: 24px;
+  --pv-space-6: 32px;
+  --pv-space-7: 48px;
+  --pv-space-8: 64px;
+  --pv-space-9: 96px;
+  --pv-space-10: 128px;
+
+  --pv-radius-none: 0;
+  --pv-radius-sm: 2px;
+  --pv-radius-md: 4px;
+  --pv-radius-lg: 8px;
+  --pv-radius-pill: 999px;
+
+  --pv-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --pv-shadow-md: 0 6px 18px rgba(0, 0, 0, 0.3);
+  --pv-shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.45);
+  --pv-shadow-lift: 0 24px 60px rgba(0, 0, 0, 0.55);
+
+  --pv-ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --pv-ease-in: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+  --pv-dur-fast: 140ms;
+  --pv-dur-med: 240ms;
+  --pv-dur-slow: 480ms;
+
+  --pv-container: 1280px;
+  --pv-container-narrow: 960px;
+  --pv-shell: 1760px;
+  --pv-shell-gutter: clamp(28px, 3.4vw, 72px);
+  --pv-header-height: 88px;
+  --pv-gutter: 48px;
 
   --color-accent: var(--pv-copper);
   --color-accent-hover: var(--pv-copper-warm);

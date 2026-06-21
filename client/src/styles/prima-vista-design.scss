@@ -242,6 +242,264 @@
   background: var(--color-surface-card-strong);
 }
 
+.section {
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+:is(
+  .services__header,
+  .projects__header,
+  .reviews__header
+) {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.62fr);
+  gap: clamp(28px, 4vw, 72px);
+  align-items: end;
+  max-width: none;
+  text-align: left;
+}
+
+:is(
+  .services__header,
+  .projects__header,
+  .reviews__header
+) :is(.services__eyebrow, .projects__eyebrow, .reviews__eyebrow) {
+  grid-column: 1;
+  margin-bottom: 14px;
+}
+
+:is(
+  .services__header,
+  .projects__header,
+  .reviews__header
+) :is(.services__title, .projects__title, .reviews__title) {
+  grid-column: 1;
+  margin-bottom: 0;
+}
+
+:is(
+  .services__header,
+  .projects__header,
+  .reviews__header
+) :is(.services__text, .projects__text, .reviews__text) {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: end;
+  max-width: 520px;
+  font-size: clamp(16px, 1.1vw, 18px);
+}
+
+.services__grid {
+  justify-content: stretch;
+}
+
+.services__card {
+  flex-basis: calc(20% - 20px);
+  max-width: none;
+  border-radius: var(--pv-radius-md);
+  background: var(--pv-cream-paper);
+  box-shadow: var(--pv-shadow-md);
+}
+
+.services__image-wrap {
+  border-radius: 0;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.services__card-content {
+  padding: 24px 22px 26px;
+}
+
+.services__card-title {
+  min-height: 2.55em;
+  margin-bottom: 10px;
+  font-size: clamp(16px, 1.25vw, 20px);
+  line-height: 1.18;
+}
+
+.services__card-text {
+  color: var(--color-text-muted);
+  font-size: 14.5px;
+  line-height: 1.58;
+}
+
+.services__footer {
+  justify-content: space-between;
+  padding-top: 26px;
+  border-top: 1px solid var(--color-border-soft);
+}
+
+.services__footer-link {
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.calculator-teaser__benefit,
+.contact__field-label,
+.anfrage__field,
+.calculator-request__field,
+.summary-panel__line,
+.selected-offer__meta {
+  font-family: var(--font-body);
+}
+
+.calculator-teaser__benefit {
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.calculator-teaser__image-frame,
+.calculator-teaser__mini-frame,
+.calculator-teaser__estimate,
+.ueber-uns__image-wrap,
+.ueber-uns__card,
+.contact__form-card,
+.contact__info-item,
+.projects__featured,
+.projects__item,
+.reviews__card,
+.legal-card {
+  border-radius: var(--pv-radius-md);
+}
+
+.calculator-teaser__estimate strong {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.ueber-uns__card,
+.contact__info-item {
+  border-color: var(--color-border-card);
+  box-shadow: var(--pv-shadow-md);
+}
+
+.ueber-uns__icon,
+.contact__icon {
+  border: 1px solid var(--color-accent-border);
+  border-radius: var(--pv-radius-md);
+  background: transparent;
+  color: var(--color-accent);
+}
+
+.projects__featured,
+.projects__item {
+  border: 1px solid rgba(236, 229, 223, 0.16);
+  border-radius: var(--pv-radius-md);
+}
+
+.projects__overlay {
+  padding: 22px;
+  background:
+    linear-gradient(to top, rgba(20, 19, 18, 0.88), rgba(20, 19, 18, 0.08));
+}
+
+.projects__featured-title,
+.projects__item-title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.projects__featured-title {
+  font-size: clamp(36px, 4vw, 64px);
+  line-height: 0.98;
+}
+
+.contact__wrapper {
+  align-items: start;
+}
+
+.contact__form-card,
+.contact__info-item {
+  background: var(--pv-cream-paper);
+}
+
+.contact__button,
+.calculator-teaser__button,
+.request-section__button,
+.anfrage__button {
+  border-radius: var(--pv-radius-sm);
+  box-shadow: none;
+}
+
+:is(
+  .contact__button,
+  .calculator-teaser__button,
+  .request-section__button,
+  .anfrage__button
+):hover {
+  transform: translateY(-1px);
+}
+
+:is(
+  .contact__input,
+  .contact__textarea,
+  .anfrage__input,
+  .anfrage__textarea,
+  .anfrage__select,
+  .calculator-request__field input,
+  .calculator-request__field textarea,
+  .renocalc-table input,
+  .summary-panel input
+) {
+  border-radius: var(--pv-radius-md);
+  box-shadow: none;
+}
+
+:is(
+  .summary-panel,
+  .selected-offer,
+  .configurator-section__card,
+  .request-section__form
+) {
+  border-radius: var(--pv-radius-md);
+  background: var(--pv-cream-paper);
+}
+
+:is(
+  .position-table__toggle,
+  .renocalc-stepper button,
+  .summary-panel__button,
+  .selected-offer__button
+) {
+  border-radius: var(--pv-radius-sm);
+}
+
+:root[data-theme='dark'] :is(
+  .services__card,
+  .calculator-teaser__estimate,
+  .ueber-uns__card,
+  .contact__form-card,
+  .contact__info-item,
+  .summary-panel,
+  .selected-offer,
+  .configurator-section__card,
+  .request-section__form,
+  .legal-card
+) {
+  background: var(--pv-cream-paper);
+  border-color: rgba(241, 233, 226, 0.12);
+}
+
+:root[data-theme='dark'] :is(
+  .services__card-text,
+  .calculator-teaser__benefit,
+  .contact__value,
+  .contact__link,
+  .ueber-uns__card-text
+) {
+  color: var(--pv-text-on-light-muted);
+}
+
+:root[data-theme='dark'] .services__footer {
+  border-top-color: rgba(241, 233, 226, 0.12);
+}
+
 @media (max-width: 576px) {
   :is(
     .services__title,
@@ -254,5 +512,41 @@
     .legal-page__title
   ) {
     font-size: clamp(38px, 13vw, 58px);
+  }
+}
+
+@media (max-width: 992px) {
+  :is(
+    .services__header,
+    .projects__header,
+    .reviews__header
+  ) {
+    display: block;
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  :is(
+    .services__header,
+    .projects__header,
+    .reviews__header
+  ) :is(.services__text, .projects__text, .reviews__text) {
+    max-width: none;
+    margin-top: 16px;
+  }
+
+  .services__card {
+    flex-basis: calc(50% - 12px);
+  }
+}
+
+@media (max-width: 576px) {
+  .services__card {
+    flex-basis: 100%;
+  }
+
+  .services__footer {
+    justify-content: center;
   }
 }

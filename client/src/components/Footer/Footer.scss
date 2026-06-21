@@ -9,6 +9,8 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  max-width: var(--pv-shell);
+  padding-inline: var(--pv-shell-gutter);
 }
 
 .footer__top {

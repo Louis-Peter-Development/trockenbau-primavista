@@ -1,36 +1,90 @@
 .theme-switcher {
+  width: 44px;
+  height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
   padding: 0;
-  border: 1px solid var(--color-border-card);
-  border-radius: 999px;
-  background: var(--color-surface-base);
-  color: var(--color-text-primary);
+  border: 0;
+  background: transparent;
   cursor: pointer;
-  box-shadow: var(--color-shadow-xs);
+}
+
+.theme-switcher__track {
+  position: relative;
+  width: 38px;
+  height: 22px;
+  display: block;
+  border: 1.5px solid rgba(26, 26, 26, 0.22);
+  border-radius: 999px;
+  background: var(--pv-cream-paper);
   transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    color 0.2s ease,
-    box-shadow 0.2s ease;
+    background 180ms var(--pv-ease-out),
+    border-color 180ms var(--pv-ease-out);
 }
 
-.theme-switcher svg {
-  color: var(--color-accent);
-  transition: color 0.2s ease;
+.theme-switcher__knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--pv-copper);
+  transition:
+    transform 180ms var(--pv-ease-out),
+    background 180ms var(--pv-ease-out);
 }
 
-.theme-switcher:hover {
-  transform: translateY(-1px);
-  border-color: var(--color-accent-border-strong);
-  box-shadow: var(--color-shadow-sm);
+.theme-switcher__sun,
+.theme-switcher__moon {
+  position: absolute;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  opacity: 0.75;
+  transition: opacity 180ms var(--pv-ease-out);
+}
+
+.theme-switcher__sun {
+  right: 7px;
+  background: var(--pv-copper);
+  box-shadow: 0 0 0 2px rgba(130, 97, 64, 0.12);
+}
+
+.theme-switcher__moon {
+  left: 8px;
+  box-shadow: inset -2px 0 0 var(--pv-text-on-light-muted);
+}
+
+.theme-switcher:hover .theme-switcher__track,
+.theme-switcher:focus-visible .theme-switcher__track {
+  border-color: var(--pv-copper);
 }
 
 .theme-switcher:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--pv-copper);
   outline-offset: 2px;
+  border-radius: 999px;
+}
+
+:root[data-theme='dark'] .theme-switcher__track {
+  background: var(--pv-ink-2);
+  border-color: rgba(241, 233, 226, 0.28);
+}
+
+:root[data-theme='dark'] .theme-switcher__knob {
+  transform: translateX(16px);
+  background: var(--pv-copper-bright);
+}
+
+:root[data-theme='dark'] .theme-switcher__sun {
+  opacity: 0.38;
+}
+
+:root[data-theme='dark'] .theme-switcher__moon {
+  opacity: 1;
+  box-shadow: inset -2px 0 0 var(--pv-copper-bright);
 }
