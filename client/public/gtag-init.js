@@ -5,7 +5,7 @@
 // visitor accepts cookies — the cookie banner upgrades consent via
 // gtag('consent', 'update', ...) (see src/utils/analytics.js).
 window.dataLayer = window.dataLayer || [];
-function gtag() { dataLayer.push(arguments); }
+function gtag() { window.dataLayer.push(arguments); }
 window.gtag = gtag;
 
 gtag('consent', 'default', {
