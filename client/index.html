@@ -9,6 +9,15 @@
   <link rel="preconnect" href="https://www.google-analytics.com" />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
+  <!-- Google tag (gtag.js) — Google Ads + Analytics with Consent Mode v2.
+       The tag loads on every page so Google can detect it, but all ad/analytics
+       storage stays "denied" until the visitor accepts cookies. /gtag-init.js
+       sets the consent defaults and configures the tags; the cookie banner
+       upgrades consent via gtag('consent', 'update', ...). Both scripts are
+       external to satisfy the site's CSP (script-src 'self' ...; see netlify.toml). -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-726250173"></script>
+  <script src="/gtag-init.js"></script>
+
   <!-- PrimaVista icons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
