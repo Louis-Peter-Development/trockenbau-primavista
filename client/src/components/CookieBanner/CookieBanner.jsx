@@ -3,8 +3,9 @@ import { useState } from 'react';
 import {
   COOKIE_CONSENT_ACCEPTED,
   COOKIE_CONSENT_DECLINED,
+  denyConsent,
   getCookieConsent,
-  initializeAnalytics,
+  grantConsent,
   setCookieConsent,
 } from '../../utils/analytics';
 import './CookieBanner.scss';
@@ -22,24 +23,15 @@ function CookieBanner() {
   const isVisible = bannerState.isVisible;
 
   const handleAccept = () => {
-    const previousConsent = bannerState.consent;
     setCookieConsent(COOKIE_CONSENT_ACCEPTED);
     setBannerState({ isVisible: false, hasChoice: true, consent: COOKIE_CONSENT_ACCEPTED });
-    initializeAnalytics();
-
-    if (previousConsent === COOKIE_CONSENT_DECLINED) {
-      window.location.reload();
-    }
+    grantConsent();
   };
 
   const handleDecline = () => {
-    const previousConsent = bannerState.consent;
     setCookieConsent(COOKIE_CONSENT_DECLINED);
     setBannerState({ isVisible: false, hasChoice: true, consent: COOKIE_CONSENT_DECLINED });
-
-    if (previousConsent === COOKIE_CONSENT_ACCEPTED) {
-      window.location.reload();
-    }
+    denyConsent();
   };
 
   return (

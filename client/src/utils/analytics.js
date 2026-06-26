@@ -1,9 +1,18 @@
-const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-3RYZDCMPBX';
-const GTAG_SCRIPT_ID = 'prima-vista-gtag';
+// Google tags (Ads AW-726250173 + Analytics G-3RYZDCMPBX) and Consent Mode v2
+// defaults live in index.html. This module only flips consent on/off in response
+// to the visitor's cookie-banner choice.
 
 export const COOKIE_CONSENT_STORAGE_KEY = 'cookie-consent';
 export const COOKIE_CONSENT_ACCEPTED = 'accepted';
 export const COOKIE_CONSENT_DECLINED = 'declined';
+
+// Consent categories the cookie banner toggles together (analytics + ads).
+const CONSENT_KEYS = [
+  'ad_storage',
+  'ad_user_data',
+  'ad_personalization',
+  'analytics_storage',
+];
 
 export const getCookieConsent = () => {
   if (typeof window === 'undefined') {
@@ -29,35 +38,27 @@ export const setCookieConsent = (value) => {
   }
 };
 
-export const initializeAnalytics = () => {
-  if (
-    typeof window === 'undefined' ||
-    !GA_MEASUREMENT_ID ||
-    document.getElementById(GTAG_SCRIPT_ID)
-  ) {
+const updateConsent = (granted) => {
+  if (typeof window === 'undefined' || typeof window.gtag !== 'function') {
     return;
   }
 
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag() {
-    window.dataLayer.push(arguments);
-  };
-
-  const script = document.createElement('script');
-
-  script.id = GTAG_SCRIPT_ID;
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-  document.head.appendChild(script);
-
-  window.gtag('js', new Date());
-  window.gtag('config', GA_MEASUREMENT_ID, {
-    anonymize_ip: true,
-  });
+  const value = granted ? 'granted' : 'denied';
+  window.gtag(
+    'consent',
+    'update',
+    Object.fromEntries(CONSENT_KEYS.map((key) => [key, value])),
+  );
 };
 
-export const initializeAnalyticsIfConsented = () => {
+export const grantConsent = () => updateConsent(true);
+
+export const denyConsent = () => updateConsent(false);
+
+// On boot, mirror a previously stored choice. Consent Mode defaults to "denied"
+// in index.html, so we only need to upgrade when the visitor already accepted.
+export const applyStoredConsent = () => {
   if (getCookieConsent() === COOKIE_CONSENT_ACCEPTED) {
-    initializeAnalytics();
+    grantConsent();
   }
 };

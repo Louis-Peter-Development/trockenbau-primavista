@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.jsx';
-import { initializeAnalyticsIfConsented } from './utils/analytics';
+import { applyStoredConsent } from './utils/analytics';
 import { applyTheme, getInitialTheme } from './utils/theme';
 
 const initialTheme = getInitialTheme();
 
 applyTheme(initialTheme);
-initializeAnalyticsIfConsented();
+applyStoredConsent();
 
 if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
