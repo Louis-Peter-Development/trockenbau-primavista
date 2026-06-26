@@ -62,3 +62,18 @@ export const applyStoredConsent = () => {
     grantConsent();
   }
 };
+
+// Google Ads "Submit lead form" conversion action (created in Google Ads as a
+// tag-based web action; primary, count = one). Fired on successful inquiry-form
+// submission. Consent Mode handles cookied vs. cookieless automatically, so this
+// fires unconditionally — leads from visitors who declined cookies still count
+// via Google's modeling.
+const LEAD_CONVERSION_SEND_TO = 'AW-726250173/n7KtCO2MlcYcEL3lptoC';
+
+export const trackLeadConversion = () => {
+  if (typeof window === 'undefined' || typeof window.gtag !== 'function') {
+    return;
+  }
+
+  window.gtag('event', 'conversion', { send_to: LEAD_CONVERSION_SEND_TO });
+};

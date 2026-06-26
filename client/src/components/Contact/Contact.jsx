@@ -5,6 +5,7 @@ import useScrollReveal from '../../hooks/useScrollReveal';
 import useReturnToForm from '../../hooks/useReturnToForm';
 import useSuccessView from '../../hooks/useSuccessView';
 import { submitProjectForm } from '../../utils/formSubmission';
+import { trackLeadConversion } from '../../utils/analytics';
 import FormErrorMessage from '../FormErrorMessage/FormErrorMessage';
 
 const contactItems = [
@@ -57,6 +58,7 @@ function Contact() {
       });
 
       setFormStatus('success');
+      trackLeadConversion();
       form.reset();
     } catch {
       setFormStatus('error');
