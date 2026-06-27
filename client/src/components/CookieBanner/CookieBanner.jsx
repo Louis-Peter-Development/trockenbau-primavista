@@ -42,9 +42,10 @@ function CookieBanner() {
             <span className="cookie-banner__eyebrow">Cookies</span>
             <h3 className="cookie-banner__title">Wir verwenden Cookies</h3>
             <p className="cookie-banner__text">
-              Diese Website verwendet notwendige Speicherfunktionen und optional
-              Google Analytics, um die Nutzung der Website besser zu verstehen.
-              Sie können der optionalen Analyse zustimmen oder sie ablehnen.
+              Diese Website verwendet notwendige Speicherfunktionen sowie optional
+              Google Analytics und Google Ads Conversion-Tracking, um die Nutzung
+              der Website und erfolgreiche Anfragen besser zu verstehen. Sie
+              können der optionalen Analyse zustimmen oder sie ablehnen.
               Weitere Informationen finden Sie in unserer{' '}
               <Link to="/datenschutz" className="cookie-banner__link">
                 Datenschutzerklärung
